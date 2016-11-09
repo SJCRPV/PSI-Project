@@ -10,6 +10,20 @@ public class Personality : MonoBehaviour {
     private PersonalLike songs;
     private List<PersonalLike> extras;
 
+    public List<PersonalLike> getPreferences()
+    {
+        List<PersonalLike> temp = new List<PersonalLike>();
+        temp.Add(traits);
+        temp.Add(films);
+        temp.Add(colours);
+        temp.Add(songs);
+        for(int i = 0; i < extras.Count; i++)
+        {
+            temp.Add(extras[i]);
+        }
+        return temp;
+    }
+
 	// Use this for initialization
 	void Start () {
 	
