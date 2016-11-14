@@ -23,7 +23,6 @@ public class PersonalLike : MonoBehaviour {
             t += fieldElements[i] + ",";
         }
         return t;
-
     }
 
 	// Use this for initialization

@@ -64,9 +64,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Dossier.cs" />
+    <Compile Include="Assets\LimitedProfile.cs" />
+    <Compile Include="Assets\Notification.cs" />
+    <Compile Include="Assets\NotificationList.cs" />
     <Compile Include="Assets\Person.cs" />
     <Compile Include="Assets\PersonalLike.cs" />
     <Compile Include="Assets\Personality.cs" />
+    <Compile Include="Assets\RomanticDate.cs" />
+    <Compile Include="Assets\RomanticDateList.cs" />
+    <Compile Include="Assets\RomanticDateStep.cs" />
+    <Compile Include="Assets\User.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2015\UnityVS.CSharp.targets" />
 </Project>

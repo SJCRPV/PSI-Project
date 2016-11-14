@@ -5,7 +5,7 @@ public class LimitedProfile : MonoBehaviour {
 
     private Dossier dossier;
     private long originDossierID;
-    private string name;
+    private string profileName;
     private string district;
     private int age;
     private string[] abridgedPreferences;
@@ -47,7 +47,7 @@ public class LimitedProfile : MonoBehaviour {
     private void fetchProfileInfo()
     {
         originDossierID = getDossierID();
-        name = findFirstName();
+        profileName = findFirstName();
         district = findDistrict();
         age = findAge();
         abridgedPreferences = findAbridgedPreferences();
