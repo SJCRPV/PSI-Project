@@ -20,7 +20,7 @@ public class PersonalLike : MonoBehaviour {
         string t = fieldName + " - ";
         for(int i = 0; i < fieldElements.Length; i++)
         {
-            t += fieldElements[i] + ",";
+            t += fieldElements[i] + ", ";
         }
         return t;
     }

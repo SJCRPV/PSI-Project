@@ -47,9 +47,14 @@ public class Person : MonoBehaviour {
         return tmpStr;
     }
 
+    private void fetchPersonFromServer()
+    {
+        //TODO: Interface with the server to gather physical data
+    }
+
 	// Use this for initialization
 	void Start () {
-	
+        fetchPersonFromServer();
 	}
 	
 	// Update is called once per frame
