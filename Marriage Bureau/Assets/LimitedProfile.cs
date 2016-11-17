@@ -1,47 +1,36 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class LimitedProfile : MonoBehaviour {
+public class LimitedProfile : Dossier {
 
-    private Dossier dossier;
     private long originDossierID;
     private string profileName;
     private string district;
     private int age;
     private string[] abridgedPreferences;
-
-    private long getDossierID()
-    {
-        return dossier.getDossierID();
-    }
     
     private string findFirstName()
     {
-        string[] firstName = dossier.getDossierName().Split(' ');
+        string[] firstName = getDossierName().Split(' ');
         return firstName[0];
     }
 
     private string findDistrict()
     {
-        string[] possibleDistrict = dossier.getDossierAddress().Split(' ');
+        string[] possibleDistrict = getDossierAddress().Split(' ');
         return possibleDistrict[possibleDistrict.Length];
-    }
-
-    private int findAge()
-    {
-        return dossier.getDossierAge();
     }
 
     private string[] findAbridgedPreferences()
     {
-        string[] temp = dossier.getDossierPreferences();
-        string abridged = "";
+        string[] temp = getDossierPreferences();
+        string[] abridged = new string[temp.Length];
         for(int i = 0; i < temp.Length; i++)
         {
-            abridged += temp[i];
+            abridged[i] = temp[i].Remove(temp[i].IndexOf("-"));
         }
 
-        return new string[1];
+        return abridged;
     }
 
     private void fetchProfileInfo()
@@ -49,17 +38,12 @@ public class LimitedProfile : MonoBehaviour {
         originDossierID = getDossierID();
         profileName = findFirstName();
         district = findDistrict();
-        age = findAge();
+        age = getDossierAge();
         abridgedPreferences = findAbridgedPreferences();
     }
 
 	// Use this for initialization
 	void Start () {
         fetchProfileInfo();
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
 	}
 }
