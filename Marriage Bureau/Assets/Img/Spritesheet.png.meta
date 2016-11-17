@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: ae93162d86d3ac04696a36f8354efa00
-timeCreated: 1479151921
+timeCreated: 1479322996
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -10,6 +10,8 @@ TextureImporter:
     21300006: MatchInfoBox
     21300008: UserProfilePic
     21300010: WhiteButton
+    21300012: NavBarSelected
+    21300014: NavBarButton
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -131,6 +133,32 @@ TextureImporter:
         y: 182
         width: 88
         height: 40
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: NavBarSelected
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 228
+        width: 167
+        height: 57
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: NavBarButton
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 290
+        width: 221
+        height: 47
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}

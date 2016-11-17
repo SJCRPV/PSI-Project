@@ -63,18 +63,19 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\ButtonPress.cs" />
-    <Compile Include="Assets\Dossier.cs" />
-    <Compile Include="Assets\LimitedProfile.cs" />
-    <Compile Include="Assets\Notification.cs" />
-    <Compile Include="Assets\NotificationList.cs" />
-    <Compile Include="Assets\Person.cs" />
-    <Compile Include="Assets\PersonalLike.cs" />
-    <Compile Include="Assets\Personality.cs" />
-    <Compile Include="Assets\RomanticDate.cs" />
-    <Compile Include="Assets\RomanticDateList.cs" />
-    <Compile Include="Assets\RomanticDateStep.cs" />
-    <Compile Include="Assets\User.cs" />
+    <Compile Include="Assets\Scripts\ButtonPress.cs" />
+    <Compile Include="Assets\Scripts\DontDestroyOnLoad.cs" />
+    <Compile Include="Assets\Scripts\Dossier.cs" />
+    <Compile Include="Assets\Scripts\LimitedProfile.cs" />
+    <Compile Include="Assets\Scripts\Notification.cs" />
+    <Compile Include="Assets\Scripts\NotificationList.cs" />
+    <Compile Include="Assets\Scripts\Person.cs" />
+    <Compile Include="Assets\Scripts\PersonalLike.cs" />
+    <Compile Include="Assets\Scripts\Personality.cs" />
+    <Compile Include="Assets\Scripts\RomanticDate.cs" />
+    <Compile Include="Assets\Scripts\RomanticDateList.cs" />
+    <Compile Include="Assets\Scripts\RomanticDateStep.cs" />
+    <Compile Include="Assets\Scripts\User.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2015\UnityVS.CSharp.targets" />
 </Project>
