@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: ae93162d86d3ac04696a36f8354efa00
-timeCreated: 1479322996
+timeCreated: 1479754647
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -12,6 +12,7 @@ TextureImporter:
     21300010: WhiteButton
     21300012: NavBarSelected
     21300014: NavBarButton
+    21300016: HomeButton
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -116,8 +117,8 @@ TextureImporter:
       name: UserProfilePic
       rect:
         serializedVersion: 2
-        x: 162
-        y: 120
+        x: 2
+        y: 340
         width: 123
         height: 144
       alignment: 0
@@ -143,7 +144,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 2
-        y: 228
+        y: 232
         width: 167
         height: 57
       alignment: 0
@@ -159,6 +160,19 @@ TextureImporter:
         y: 290
         width: 221
         height: 47
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: HomeButton
+      rect:
+        serializedVersion: 2
+        x: 110
+        y: 183
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
