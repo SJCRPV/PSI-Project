@@ -45,6 +45,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\EraseALLTHETHINGS.cs" />
      <Compile Include="Assets\Scripts\ButtonPress.cs" />
      <Compile Include="Assets\Scripts\CameraMove.cs" />
      <Compile Include="Assets\Scripts\DontDestroyOnLoad.cs" />
@@ -58,7 +59,7 @@
      <Compile Include="Assets\Scripts\RomanticDate.cs" />
      <Compile Include="Assets\Scripts\RomanticDateList.cs" />
      <Compile Include="Assets\Scripts\RomanticDateStep.cs" />
-     <Compile Include="Assets\Scripts\ScrollToTop.cs" />
+     <Compile Include="Assets\Scripts\ScrollToPosition.cs" />
      <Compile Include="Assets\Scripts\User.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>E:/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>

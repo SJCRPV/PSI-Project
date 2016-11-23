@@ -2,13 +2,18 @@
 using System.Collections;
 using UnityEngine.UI;
 
-public class ScrollToTop : MonoBehaviour {
+public class ScrollToPosition : MonoBehaviour {
 
     private Scrollbar scrollbarScript;
 
     public void moveToTop()
     {
         scrollbarScript.value = 1;
+    }
+
+    public void moveToPosition(float newPos)
+    {
+        scrollbarScript.value = newPos;
     }
 
 	// Use this for initialization
