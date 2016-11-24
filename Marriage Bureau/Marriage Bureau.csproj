@@ -5,7 +5,7 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{CF040EA0-B297-216D-A5AC-E8232B409CC9}</ProjectGuid>
+    <ProjectGuid>{6786A13D-92C7-5151-85A9-3446894466A8}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AssemblyName>Assembly-CSharp</AssemblyName>
     <FileAlignment>512</FileAlignment>
@@ -81,5 +81,6 @@
     <Compile Include="Assets\Scripts\Utility\ScrollToPosition.cs" />
     <Compile Include="Assets\Scripts\Utility\SwapContentOnClick.cs" />
   </ItemGroup>
-  <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2015\UnityVS.CSharp.targets" />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Target Name="GenerateTargetFrameworkMonikerAttribute" />
 </Project>

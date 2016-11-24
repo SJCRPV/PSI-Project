@@ -4,6 +4,7 @@ using System.Collections.Generic;
 
 public class Personality : MonoBehaviour {
 
+    //TODO: Get a public definition of an IEnumerator. Likely just a public List. Or at least serialized.
     private PersonalLike traits;
     private PersonalLike films;
     private PersonalLike colours;
