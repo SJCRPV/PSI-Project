@@ -9,25 +9,29 @@ public class Personality : MonoBehaviour {
     private PersonalLike films;
     private PersonalLike colours;
     private PersonalLike songs;
-    private List<PersonalLike> extras;
+    private List<PersonalLike> completeList;
+
+    public string getPLikeTitleAtIndex(int index)
+    {
+        return completeList[index].getFieldName();
+    }
 
     public List<PersonalLike> getPreferences()
     {
-        List<PersonalLike> temp = new List<PersonalLike>();
-        temp.Add(traits);
-        temp.Add(films);
-        temp.Add(colours);
-        temp.Add(songs);
-        for(int i = 0; i < extras.Count; i++)
-        {
-            temp.Add(extras[i]);
-        }
-        return temp;
+        return completeList;
+    }
+
+    private void loadDefaultsIntoList()
+    {
+        completeList.Add(traits);
+        completeList.Add(films);
+        completeList.Add(colours);
+        completeList.Add(songs);
     }
 
 	// Use this for initialization
 	void Start () {
-	
+        loadDefaultsIntoList();
 	}
 	
 	// Update is called once per frame
