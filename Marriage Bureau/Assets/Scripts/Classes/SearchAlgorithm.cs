@@ -15,13 +15,15 @@ public class SearchAlgorithm : MonoBehaviour {
     private Person originPerson;
     private Personality originPersonality;
     //User currently being scanned
-    private List<string> confirmedTopics;
+    /*Tuple may not be supported by Unity.*/
+    private Tuple<int, int> confirmedTopics;
+    private List<int[]> confirmedTopics;
     private Dossier currentScanDossier;
     private Person currentScanPerson;
     private Personality currentScanPersonality;
 
     //THINKING: Load in batches of 10. At the end of this, send it to be displayed.
-    //TODO: Define threshold ratio to consider it for matching 
+    //TODO: Define threshold ratio to consider it for matching. Note that the defaults are also part of the PersonalLike list so they will always get added to the "confirmedTopics"
 
     private void dispatchMatchesToScreen()
     {
@@ -30,22 +32,27 @@ public class SearchAlgorithm : MonoBehaviour {
 
     private void conductDeepSearch()
     {
+        for(int i = 0; i < confirmedTopics; i++)
+        {
 
+        }
     }
 
     private void searchDossier()
     {
         int currentScanCount = currentScanPersonality.getPreferences().Count;
         int originScanCount = originPersonality.getPreferences().Count;
-        int matchedTopicsCount = 0;
 
         for (int i = 0, j = 0; i < currentScanCount && j < originScanCount; i++)
         {
             if(currentScanPersonality.getPLikeTitleAtIndex(i).Equals(originPersonality.getPLikeTitleAtIndex(j)))
             {
-                matchedTopicsCount++;
-                confirmedTopics.Add(currentScanPersonality.getPLikeTitleAtIndex(i));
-                if(matchedTopicsCount/originScanCount >= thresholdRatioForMatch)
+                //Tuple
+                confirmedTopics.Add(j, i);
+                //List
+                confirmedTopics.Add(new int[2] {j,i});
+
+                if(confirmedTopics.Count/originScanCount >= thresholdRatioForMatch)
                 {
                     confirmedMatches.Add(currentScanDossier);
                     if(confirmedMatches.Count % sizeOfMatchBatch == 0)
@@ -64,6 +71,23 @@ public class SearchAlgorithm : MonoBehaviour {
         }
     }
 
+    private void initiateSearch()
+    {
+        //TODO: Interact with DB to fetch user list
+        /*
+         * Send to DB: select * from Users
+         * Probably use a cursor to insert into a list
+         * 
+         * for(int i = 0; i < list.Count; i++)
+         * {
+         *      currentScanDossier = list[i];
+         *      currentScanPerson = currentScanDossier.GetComponent<Person>();
+         *      currentScanPersonality = currentScanPerson.GetComponent<Personality>();
+         *      searchDossier();
+         * }
+         * */
+    }
+
 	// Use this for initialization
 	void Start ()
     {
@@ -71,6 +95,7 @@ public class SearchAlgorithm : MonoBehaviour {
         originDossier = GameObject.Find("User").GetComponent<Dossier>();
         originPerson = originDossier.GetComponent<Person>();
         originPersonality = originPerson.GetComponent<Personality>();
+        initiateSearch();
     }
 	
 	// Update is called once per frame
