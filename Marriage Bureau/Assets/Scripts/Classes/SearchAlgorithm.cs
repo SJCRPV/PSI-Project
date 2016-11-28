@@ -14,16 +14,16 @@ public class SearchAlgorithm : MonoBehaviour {
     private Dossier originDossier;
     private Person originPerson;
     private Personality originPersonality;
+    private int originCount;
     //User currently being scanned
-    /*Tuple may not be supported by Unity.*/
-    private Tuple<int, int> confirmedTopics;
     private List<int[]> confirmedTopics;
     private Dossier currentScanDossier;
     private Person currentScanPerson;
     private Personality currentScanPersonality;
 
-    //THINKING: Load in batches of 10. At the end of this, send it to be displayed.
+    //CONSIDER: Load in batches of 10. At the end of this, send it to be displayed.
     //TODO: Define threshold ratio to consider it for matching. Note that the defaults are also part of the PersonalLike list so they will always get added to the "confirmedTopics"
+    //TODO: SEE IF YOU CAN MAKE THIS CODE MORE READABLE BY HAVING SHORTER INSTRUCTIONS!!!
 
     private void dispatchMatchesToScreen()
     {
@@ -32,27 +32,44 @@ public class SearchAlgorithm : MonoBehaviour {
 
     private void conductDeepSearch()
     {
-        for(int i = 0; i < confirmedTopics; i++)
+        List<string>[] itemsInCommonPerTopic = new List<string>[confirmedTopics.Count];
+        for(int i = 0; i < confirmedTopics.Count; i++)
         {
+            string[] originPLikeElements = originPersonality.getPLikeAtIndex(confirmedTopics[i][0]).getFieldElements();
+            string[] currentPLikeElements = currentScanPersonality.getPLikeAtIndex(confirmedTopics[i][1]).getFieldElements();
 
+            int largerCount = originPLikeElements.Length < currentPLikeElements.Length ? currentPLikeElements.Length : originPLikeElements.Length; 
+
+            for(int j = 0, k = 0; j <= largerCount; j++)
+            {
+                if(originPLikeElements[k].Equals(currentPLikeElements[j]))
+                {
+                    itemsInCommonPerTopic[0].Add(currentPLikeElements[j]);
+                    j = 0;
+                    k++;
+                    continue;
+                }
+
+                if(j == largerCount && k < originPLikeElements.Length)
+                {
+                    j = 0;
+                    k++;
+                }
+            }
         }
     }
 
     private void searchDossier()
     {
         int currentScanCount = currentScanPersonality.getPreferences().Count;
-        int originScanCount = originPersonality.getPreferences().Count;
 
-        for (int i = 0, j = 0; i < currentScanCount && j < originScanCount; i++)
+        for (int i = 0, j = 0; i < currentScanCount && j < originCount; i++)
         {
             if(currentScanPersonality.getPLikeTitleAtIndex(i).Equals(originPersonality.getPLikeTitleAtIndex(j)))
             {
-                //Tuple
-                confirmedTopics.Add(j, i);
-                //List
                 confirmedTopics.Add(new int[2] {j,i});
 
-                if(confirmedTopics.Count/originScanCount >= thresholdRatioForMatch)
+                if(confirmedTopics.Count/originCount >= thresholdRatioForMatch)
                 {
                     confirmedMatches.Add(currentScanDossier);
                     if(confirmedMatches.Count % sizeOfMatchBatch == 0)
@@ -74,6 +91,12 @@ public class SearchAlgorithm : MonoBehaviour {
     private void initiateSearch()
     {
         //TODO: Interact with DB to fetch user list
+        //TODO: Find a way to deep search the 4 default categories
+        originCount = originPersonality.getPreferences().Count;
+        for (int i = 0; i < 4; i++)
+        {
+
+        }
         /*
          * Send to DB: select * from Users
          * Probably use a cursor to insert into a list

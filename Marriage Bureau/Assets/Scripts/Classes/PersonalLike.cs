@@ -15,6 +15,11 @@ public class PersonalLike : MonoBehaviour {
         return fieldElements;
     }
 
+    public string getFieldElementAtIndex(int index)
+    {
+        return fieldElements[index];
+    }
+
     public string toString()
     {
         string t = fieldName + " - ";
