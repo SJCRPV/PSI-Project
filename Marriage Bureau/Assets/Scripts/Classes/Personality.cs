@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class Personality : MonoBehaviour {
+public class Personality : Person {
 
     //TODO: Get a public definition of an IEnumerator. Likely just a public List. Or at least serialized.
     private PersonalLike traits;
@@ -47,13 +47,4 @@ public class Personality : MonoBehaviour {
 
         return temp;
     }
-
-	// Use this for initialization
-	void Start () {
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
 }
