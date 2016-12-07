@@ -59,7 +59,7 @@ public class SwapContentOnClick : MonoBehaviour
     {
         if (isActive)
         {
-            GameObject.Find(associatedContent).SetActive(isActive);
+            parentContent.transform.Find(associatedContent).gameObject.SetActive(isActive);
         }
         else
         {

@@ -19,7 +19,6 @@ public class BackgroundSpriteScroll : MonoBehaviour {
         animatorComponent.enabled = true;
         animatorComponent.Play("TransitionOut");
         yield return new WaitForSeconds(animatorComponent.runtimeAnimatorController.animationClips[0].length);
-        //animatorComponent.Stop();
         currentSpriteRen.sprite = spriteScrollList[spriteScrollCounter++];
         animatorComponent.Play("TransitionIn");
         yield return new WaitForSeconds(animatorComponent.runtimeAnimatorController.animationClips[1].length);
@@ -27,6 +26,18 @@ public class BackgroundSpriteScroll : MonoBehaviour {
         animatorComponent.enabled = false;
         yield return new WaitForEndOfFrame();
         isCoroutineRunning = false;
+        StopCoroutine("playAnimation");
+    }
+
+    void OnEnable()
+    {
+        StartCoroutine("playAnimation");
+        isCoroutineRunning = true;
+    }
+    
+    void OnDisable()
+    {
+        animatorComponent.Stop();
         StopCoroutine("playAnimation");
     }
 
