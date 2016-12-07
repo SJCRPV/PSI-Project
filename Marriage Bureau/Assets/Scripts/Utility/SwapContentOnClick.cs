@@ -70,7 +70,7 @@ public class SwapContentOnClick : MonoBehaviour
     public void onClick(bool isClicked)
     {
         swapSprite(isClicked);
-        swapTextColour(isClicked);
+        //swapTextColour(isClicked);
         adjustObjectHeight(isClicked);
         changeSetActive(isClicked);
     }
