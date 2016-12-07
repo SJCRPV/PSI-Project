@@ -2,17 +2,23 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class RomanticDateList : MonoBehaviour {
+public class RomanticDateList {
 
     private List<RomanticDate> dateList;
+    private int dossierID;
 
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
+    public void addRomanticDate(RomanticDate newRomanticDate)
+    {
+        dateList.Add(newRomanticDate);
+    }
+
+    public int getOriginDossierID()
+    {
+        return dossierID;
+    }
+    
+    public RomanticDateList(int originDossierID)
+    {
+        dossierID = originDossierID;
+    }
 }

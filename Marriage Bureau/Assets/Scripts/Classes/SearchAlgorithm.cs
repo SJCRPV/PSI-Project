@@ -33,24 +33,25 @@ public class SearchAlgorithm : MonoBehaviour {
     private void conductDeepSearch()
     {
         List<string>[] itemsInCommonPerTopic = new List<string>[confirmedTopics.Count];
+        int commonTopicsCounter = 0;
         for(int i = 0; i < confirmedTopics.Count; i++)
         {
             string[] originPLikeElements = originPersonality.getPLikeAtIndex(confirmedTopics[i][0]).getFieldElements();
             string[] currentPLikeElements = currentScanPersonality.getPLikeAtIndex(confirmedTopics[i][1]).getFieldElements();
 
-            int largerCount = originPLikeElements.Length < currentPLikeElements.Length ? currentPLikeElements.Length : originPLikeElements.Length; 
+            int largerLength = originPLikeElements.Length < currentPLikeElements.Length ? currentPLikeElements.Length : originPLikeElements.Length; 
 
-            for(int j = 0, k = 0; j <= largerCount; j++)
+            for(int j = 0, k = 0; j <= largerLength; j++)
             {
                 if(originPLikeElements[k].Equals(currentPLikeElements[j]))
                 {
-                    itemsInCommonPerTopic[0].Add(currentPLikeElements[j]);
+                    itemsInCommonPerTopic[commonTopicsCounter++].Add(currentPLikeElements[j]);
                     j = 0;
                     k++;
                     continue;
                 }
 
-                if(j == largerCount && k < originPLikeElements.Length)
+                if(j == largerLength && k < originPLikeElements.Length)
                 {
                     j = 0;
                     k++;

@@ -80,6 +80,7 @@
     <Compile Include="Assets\Scripts\Utility\ButtonPress.cs" />
     <Compile Include="Assets\Scripts\Utility\DontDestroyOnLoad.cs" />
     <Compile Include="Assets\Scripts\Utility\ScrollToPosition.cs" />
+    <Compile Include="Assets\Scripts\Utility\SwapContentOnClick.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />

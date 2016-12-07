@@ -49,12 +49,5 @@ public abstract class Dossier : MonoBehaviour
         dossierID = fetchIDFromServer();
         person = GetComponent<Person>();
         isPremium = fetchIsPremium();
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
     }
 }

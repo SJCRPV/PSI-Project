@@ -29,9 +29,4 @@ public class PersonalLike : MonoBehaviour {
         }
         return t;
     }
-
-	// Use this for initialization
-	void Start () {
-	    
-	}
 }
