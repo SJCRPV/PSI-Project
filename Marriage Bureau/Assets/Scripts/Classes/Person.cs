@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class Person : MonoBehaviour {
+public class Person : Dossier {
 
     private Personality personality;
     private string fullName;
@@ -55,10 +55,5 @@ public class Person : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         fetchPersonFromServer();
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
 	}
 }
