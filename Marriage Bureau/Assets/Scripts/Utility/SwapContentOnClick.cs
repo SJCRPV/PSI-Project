@@ -4,59 +4,87 @@ using UnityEngine.UI;
 
 public class SwapContentOnClick : MonoBehaviour
 {
+    [SerializeField]
+    private Sprite inactiveSprite;
+    [SerializeField]
+    private Sprite activeSprite;
+    [SerializeField]
+    private float activeHeight;
+    [SerializeField]
+    private float inactiveHeight;
 
-    [SerializeField]
-    private Sprite idleSprite;
-    [SerializeField]
-    private Sprite clickedSprite;
-    [SerializeField]
-    private GameObject content;
-    private GameObject paginaInicial;
-    private GameObject conceitoEmpresa;
-    private GameObject contactos;
-    private GameObject currentActiveObject;
+    private GameObject parentContent;
     private Image imageScript;
+    private Text textScript;
+    private RectTransform objectRectTransform;
+    private string associatedContent;
 
-
-    public void swapSprite()
+    private void swapSprite(bool isActive)
     {
-        if (imageScript.sprite != clickedSprite)
+        if (isActive)
         {
-            imageScript.sprite = clickedSprite;
-            buttonTextScript.color = Color.white;
-            swapText();
+            imageScript.sprite = activeSprite;
+        }
+        else
+        {
+            imageScript.sprite = inactiveSprite;
         }
     }
 
-    public void resetSprite()
+    private void swapTextColour(bool isClicked)
     {
-        imageScript.sprite = idleSprite;
-        buttonTextScript.color = Color.black;
+        if(isClicked)
+        {
+            textScript.color = Color.white;
+        }
+        else
+        {
+            textScript.color = Color.black;
+        }
     }
 
-    private void turnEverythingOff()
+    private void adjustObjectHeight(bool isClicked)
     {
-        paginaInicial.gameObject.SetActive(false);
-        conceitoEmpresa.gameObject.SetActive(false);
-        contactos.gameObject.SetActive(false);
+        if(isClicked)
+        {
+            objectRectTransform.sizeDelta = new Vector2(objectRectTransform.rect.width, activeHeight);
+        }
+        else
+        {
+            objectRectTransform.sizeDelta = new Vector2(objectRectTransform.rect.width, inactiveHeight);
+        }
     }
 
-    private void onClick(string objectToActivate)
+    private void changeSetActive(bool isActive)
     {
-        currentActiveObject = GameObject.Find(objectToActivate);
-        imageScript = currentActiveObject.GetComponent<Image>();
-        turnEverythingOff();
-        swapSprite();
-        currentActiveObject.SetActive(true);
-
+        if (isActive)
+        {
+            GameObject.Find(associatedContent).SetActive(isActive);
+        }
+        else
+        {
+            parentContent.transform.Find(associatedContent).gameObject.SetActive(isActive);
+        }
     }
 
-    // Use this for initialization
+    public void onClick(bool isClicked)
+    {
+        swapSprite(isClicked);
+        swapTextColour(isClicked);
+        adjustObjectHeight(isClicked);
+        changeSetActive(isClicked);
+    }
+
     void Start()
     {
-        content = GameObject.Find("Content");
-        paginaInicial = content.transform.GetChild(0).gameObject;
-        conceitoEmpresa = content.transform.GetChild(1).gameObject;
-        contactos = content.transform.GetChild(2).gameObject;
+        imageScript = gameObject.GetComponentInChildren<Image>();
+        textScript = gameObject.transform.GetChild(0).gameObject.GetComponentInChildren<Text>();
+        objectRectTransform = gameObject.transform.GetChild(0).gameObject.GetComponent<RectTransform>();
+        if(!objectRectTransform.name.Equals("GameObject"))
+        {
+            Debug.LogError("I didn't grab the right object! I grabbed " + objectRectTransform.name);
+        }
+        parentContent = GameObject.Find("Content");
+        associatedContent = gameObject.name;
     }
 }
