@@ -59,7 +59,7 @@ public class SwapContentOnClick : MonoBehaviour
     {
         if (isActive)
         {
-            GameObject.Find(associatedContent).SetActive(isActive);
+            parentContent.transform.Find(associatedContent).gameObject.SetActive(isActive);
         }
         else
         {
@@ -70,7 +70,7 @@ public class SwapContentOnClick : MonoBehaviour
     public void onClick(bool isClicked)
     {
         swapSprite(isClicked);
-        swapTextColour(isClicked);
+        //swapTextColour(isClicked);
         adjustObjectHeight(isClicked);
         changeSetActive(isClicked);
     }
