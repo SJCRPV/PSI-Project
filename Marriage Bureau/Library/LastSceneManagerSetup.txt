@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Scenes/AfterLogin.unity
+- path: Assets/Scenes/Conta Premium.unity
   isLoaded: 1
   isActive: 1
