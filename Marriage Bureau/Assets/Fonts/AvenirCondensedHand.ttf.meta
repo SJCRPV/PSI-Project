@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: 342cd937b8c3eab4eac88ae2b93b0270
-timeCreated: 1481109552
+guid: d2cda6126ed930a42bb5e28306a78650
+timeCreated: 1481907429
 licenseType: Free
 TrueTypeFontImporter:
   serializedVersion: 4
@@ -10,7 +10,7 @@ TrueTypeFontImporter:
   characterPadding: 1
   includeFontData: 1
   fontNames:
-  - Art Brewery
+  - AvenirCondensedHand
   fallbackFontReferences: []
   customCharacters: 
   fontRenderingMode: 0
