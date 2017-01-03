@@ -4,6 +4,7 @@ using System.Collections.Generic;
 
 public class SearchAlgorithm : MonoBehaviour {
 
+    //Minimum ration of common things to be considered a match
     public float thresholdRatioForMatch;
     //Defaults to 10 at this point.
     public int sizeOfMatchBatch = 10;

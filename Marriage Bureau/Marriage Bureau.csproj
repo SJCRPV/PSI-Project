@@ -91,7 +91,10 @@
     <Compile Include="Assets\Scripts\Utility\BackgroundSpriteScroll.cs" />
     <Compile Include="Assets\Scripts\Utility\ButtonPress.cs" />
     <Compile Include="Assets\Scripts\Utility\DontDestroyOnLoad.cs" />
+    <Compile Include="Assets\Scripts\Utility\InteractWithDB.cs" />
     <Compile Include="Assets\Scripts\Utility\ScrollToPosition.cs" />
+    <Compile Include="Assets\Scripts\Utility\SetPremiumValues.cs" />
+    <Compile Include="Assets\Scripts\Utility\StaticScript.cs" />
     <Compile Include="Assets\Scripts\Utility\SubmitInput.cs" />
     <Compile Include="Assets\Scripts\Utility\SwapContentOnClick.cs" />
   </ItemGroup>

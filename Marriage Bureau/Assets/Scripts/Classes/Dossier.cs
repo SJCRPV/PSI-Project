@@ -3,6 +3,8 @@ using System.Collections;
 
 public abstract class Dossier : MonoBehaviour
 {
+
+    private StaticScript staticScript;
     private static long dossierID;
     private Person person;
     private Person idealMatch;
@@ -33,7 +35,10 @@ public abstract class Dossier : MonoBehaviour
 
     private long fetchIDFromServer()
     {
-        //TODO: interface with the DB to fetch the dossier ID associated with the user
+        //TODO: Interface with the DB to fetch the dossier ID associated with the user
+        staticScript.setDestinationURL("http://psiwebservice/fetchID.php");
+        staticScript.setVarNames(new string[] { "id" });
+        staticScript.getSelectFromDB();
         return -1;
     }
     private bool fetchIsPremium()
@@ -46,6 +51,7 @@ public abstract class Dossier : MonoBehaviour
     void Start()
     {
         //This will fill in the information by fecthing it from the database
+        staticScript = GameObject.Find("HolderOfValues").GetComponent<StaticScript>();
         dossierID = fetchIDFromServer();
         person = GetComponent<Person>();
         isPremium = fetchIsPremium();
