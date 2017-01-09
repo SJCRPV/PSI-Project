@@ -32,10 +32,10 @@ public class SubmitInput : MonoBehaviour {
         if (varValues[3] == confirmPassField.text)
         {
             //interactDBScript.sendToDB(destinationURL, varNames, varValues);
-            staticScript.setDestinationURL(destinationURL);
-            staticScript.setVarNames(varNames);
-            staticScript.setVarValues(varValues);
-            staticScript.setCurrentTable(tableName);
+            staticScript.DestinationURL = destinationURL;
+            staticScript.VarNames = varNames;
+            staticScript.VarValues = varValues;
+            staticScript.DbTable = tableName;
             staticScript.sendToDB();
         }
         else

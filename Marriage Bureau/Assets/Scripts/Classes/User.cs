@@ -3,6 +3,7 @@ using System.Collections;
 
 public class User : Dossier {
     //TODO: The whole class. 
+
     private void openProfile()
     {
         //TODO: Load the profile screen.

@@ -8,7 +8,6 @@ public class Person : Dossier {
     private string fullName;
     private bool sex;
     private int age;
-    private float height;
     private string address;
     private string profilePhoto;
 
@@ -19,10 +18,6 @@ public class Person : Dossier {
     public string getAddress()
     {
         return address;
-    }
-    public float getHeight()
-    {
-        return height;
     }
     public int getAge()
     {

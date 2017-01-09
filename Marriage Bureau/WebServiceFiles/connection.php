@@ -1,6 +1,6 @@
 <?php
 	//Credentials
-	$server = "infosectest";
+	$server = "psiwebservice";
 	$DBusername = "root";
 	$DBpassword = "";
 	

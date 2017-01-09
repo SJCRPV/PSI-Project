@@ -9,7 +9,7 @@
 	$table = $_POST['pessoa'];
 	
 	//Queries
-	$insert = "INSERT INTO $table (Name, Email, Username, Password)
+	$insert = "INSERT INTO $table (NOMECOMPLETO, EMAIL, USERNAME, Password)
 			   VALUES('$name', '$email', '$username', '$password')";
 	
 	$connection = mysqli_connect($server, $DBusername, $DBpassword, $database);

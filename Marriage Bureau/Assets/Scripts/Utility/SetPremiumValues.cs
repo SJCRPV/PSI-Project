@@ -13,8 +13,8 @@ public class SetPremiumValues : MonoBehaviour {
 
     public void sendValuesToStaticScript()
     {
-        staticScript.setIsMonthlyPremium(isMonthly);
-        staticScript.setDestinationURL(destinationURL);
+        staticScript.IsMonthlyPremium = isMonthly;
+        staticScript.DestinationURL = destinationURL;
     }
 
 	// Use this for initialization

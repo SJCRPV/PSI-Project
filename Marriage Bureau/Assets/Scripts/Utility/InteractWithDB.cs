@@ -6,8 +6,19 @@ public class InteractWithDB : MonoBehaviour{
 
     private WWW www;
     private WWWForm form;
+    private string data;
+    private string[] cleanData;
 
-    private IEnumerator WaitForRequest(WWW www)
+    private void prepareReturnData()
+    {
+        data = www.text;
+        Debug.Log(data);
+        cleanData = data.Split(',');
+        Debug.Log(cleanData);
+        //isRequesting = false;
+    }
+
+    private IEnumerator WaitForRequest(WWW www, bool hasDataToReturn)
     {
         yield return www;
 
@@ -18,6 +29,11 @@ public class InteractWithDB : MonoBehaviour{
         else
         {
             Debug.Log("WWW Error: " + www.error);
+        }
+
+        if(hasDataToReturn)
+        {
+            prepareReturnData();
         }
     }
 
@@ -30,19 +46,15 @@ public class InteractWithDB : MonoBehaviour{
         }
         form.AddField(dbTable, dbTable);
         www = new WWW(destinationURL, form);
-        StartCoroutine(WaitForRequest(www));
+        StartCoroutine(WaitForRequest(www, false));
     }
 
     public string[] getFromDB(string destinationURL)
     {
         www = new WWW(destinationURL);
-        StartCoroutine(WaitForRequest(www));
+        StartCoroutine(WaitForRequest(www, true));
 
-        string data = www.text;
-        Debug.Log(data);
-        string[] temp = data.Split(',');
-
-        return temp;
+        return cleanData;
     }
 
     public string[] getSelectFromDB(string destinationURL, string[] varsToSelect, string table)
@@ -50,19 +62,36 @@ public class InteractWithDB : MonoBehaviour{
         form = new WWWForm();
         for(int i = 0; i < varsToSelect.Length; i++)
         {
-            form.AddField(i.ToString(), varsToSelect[i]);
+            form.AddField(varsToSelect[i], varsToSelect[i]);
         }
 
-        form.AddField((varsToSelect.Length + 1).ToString(), table);
+        form.AddField(table, table);
 
         www = new WWW(destinationURL, form);
-        StartCoroutine(WaitForRequest(www));
+        StartCoroutine(WaitForRequest(www, true));
 
-        string data = www.text;
-        Debug.Log(data);
-        string[] temp = data.Split(',');
+        return cleanData;
+    }
 
-        return temp;
+    public string[] getSelectFromDB(string destinationURL, string[] varsToSelect, string[][] conditionValues, string table)
+    {
+        form = new WWWForm();
+        for(int i = 0; i < varsToSelect.Length; i++)
+        {
+            form.AddField(varsToSelect[i], varsToSelect[i]);
+        }
+
+        for(int i = 0; i < conditionValues.Length; i++)
+        {
+            form.AddField(conditionValues[0][i], conditionValues[1][i]);
+        }
+
+        form.AddField("table", table);
+
+        www = new WWW(destinationURL, form);
+        StartCoroutine(WaitForRequest(www, true));
+
+        return cleanData;
     }
 
     private InteractWithDB()

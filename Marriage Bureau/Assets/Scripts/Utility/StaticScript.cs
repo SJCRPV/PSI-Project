@@ -11,64 +11,156 @@ public class StaticScript : MonoBehaviour {
     static string destinationURL;
     static string[] varNames;
     static string[] varValues;
+    static string[][] conditionValues;
     static bool isMonthlyPremium;
 
     private InteractWithDB dbInteractionScript;
 
-    public void getLoginValues()
+    public string Username
     {
-        username = GameObject.Find("Username").GetComponent<InputField>().text;
-        password = GameObject.Find("Password").GetComponent<InputField>().text;
+        get
+        {
+            return username;
+        }
+
+        set
+        {
+            username = value;
+        }
+    }
+
+    public string Password
+    {
+        get
+        {
+            return password;
+        }
+
+        set
+        {
+            password = value;
+        }
+    }
+
+    public string DbTable
+    {
+        get
+        {
+            return dbTable;
+        }
+
+        set
+        {
+            dbTable = value;
+        }
+    }
+
+    public string DestinationURL
+    {
+        get
+        {
+            return destinationURL;
+        }
+
+        set
+        {
+            destinationURL = value;
+        }
+    }
+
+    public string[] VarNames
+    {
+        get
+        {
+            return varNames;
+        }
+
+        set
+        {
+            varNames = value;
+        }
+    }
+
+    public string[] VarValues
+    {
+        get
+        {
+            return varValues;
+        }
+
+        set
+        {
+            varValues = value;
+        }
+    }
+
+    public bool IsMonthlyPremium
+    {
+        get
+        {
+            return isMonthlyPremium;
+        }
+
+        set
+        {
+            isMonthlyPremium = value;
+        }
+    }
+
+    public void fetchLoginValues()
+    {
+        Username = GameObject.Find("Username").GetComponent<InputField>().text;
+        Password = GameObject.Find("Password").GetComponent<InputField>().text;
     }
 
     public void clearValues()
     {
-        username = "";
-        password = "";
-        dbTable = "";
-        destinationURL = "";
-        varNames = null;
-        varValues = null;
+        Username = "";
+        Password = "";
+        DbTable = "";
+        DestinationURL = "";
+        VarNames = null;
+        VarValues = null;
     }
 
-    public void setCurrentTable(string tableName)
-    {
-        dbTable = tableName;
-    }
+    //public void setCurrentTable(string tableName)
+    //{
+    //    DbTable = tableName;
+    //}
 
-    public void setDestinationURL(string url)
-    {
-        destinationURL = url;
-    }
+    //public void setDestinationURL(string url)
+    //{
+    //    DestinationURL = url;
+    //}
 
-    public void setVarNames(string[] newVarNames)
-    {
-        varNames = newVarNames;
-    }
+    //public void setVarNames(string[] newVarNames)
+    //{
+    //    VarNames = newVarNames;
+    //}
 
-    public void setVarValues(string[] newVarValues)
-    {
-        varValues = newVarValues;
-    }
+    //public void setVarValues(string[] newVarValues)
+    //{
+    //    VarValues = newVarValues;
+    //}
 
-    public void setIsMonthlyPremium(bool newBool)
-    {
-        isMonthlyPremium = newBool;
-    }
+    //public void setIsMonthlyPremium(bool newBool)
+    //{
+    //    IsMonthlyPremium = newBool;
+    //}
 
     public void sendToDB()
     {
-        dbInteractionScript.sendToDB(destinationURL, varNames, varValues, dbTable);
+        dbInteractionScript.sendToDB(DestinationURL, VarNames, VarValues, DbTable);
     }
 
-    public void getFromDB()
+    public string[] getFromDB()
     {
-        dbInteractionScript.getFromDB(destinationURL);
+        return dbInteractionScript.getFromDB(DestinationURL);
     }
 
-    public void getSelectFromDB()
+    public string[] getSelectFromDB()
     {
-        dbInteractionScript.getSelectFromDB(destinationURL, varNames, dbTable);
+        return dbInteractionScript.getSelectFromDB(DestinationURL, VarNames, DbTable);
     }
 
     // Use this for initialization

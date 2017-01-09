@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
 
-public abstract class Dossier : MonoBehaviour
+public class Dossier : MonoBehaviour
 {
 
     private StaticScript staticScript;
@@ -36,10 +37,11 @@ public abstract class Dossier : MonoBehaviour
     private long fetchIDFromServer()
     {
         //TODO: Interface with the DB to fetch the dossier ID associated with the user
-        staticScript.setDestinationURL("http://psiwebservice/fetchID.php");
-        staticScript.setVarNames(new string[] { "id" });
-        staticScript.getSelectFromDB();
-        return -1;
+        staticScript.DestinationURL = "http://psiwebservice/fetchID.php";
+        staticScript.DbTable = "pessoa";
+        staticScript.VarNames = new string[] { "id", staticScript.Username };
+        long returnID = Convert.ToInt64(staticScript.getSelectFromDB()[0]);
+        return returnID;
     }
     private bool fetchIsPremium()
     {
