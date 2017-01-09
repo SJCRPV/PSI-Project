@@ -8,6 +8,17 @@ public class InteractWithDB : MonoBehaviour{
     private WWWForm form;
     private string data;
     private string[] cleanData;
+    private bool isRequesting;
+
+    public string[] getCleanData()
+    {
+        return cleanData;
+    }
+
+    public bool isWWWRequesting()
+    {
+        return isRequesting;
+    }
 
     private void prepareReturnData()
     {
@@ -15,11 +26,12 @@ public class InteractWithDB : MonoBehaviour{
         Debug.Log(data);
         cleanData = data.Split(',');
         Debug.Log(cleanData);
-        //isRequesting = false;
+        isRequesting = false;
     }
 
     private IEnumerator WaitForRequest(WWW www, bool hasDataToReturn)
     {
+        isRequesting = true;
         yield return www;
 
         if (www.error == null)
@@ -49,15 +61,13 @@ public class InteractWithDB : MonoBehaviour{
         StartCoroutine(WaitForRequest(www, false));
     }
 
-    public string[] getFromDB(string destinationURL)
+    public void getFromDB(string destinationURL)
     {
         www = new WWW(destinationURL);
         StartCoroutine(WaitForRequest(www, true));
-
-        return cleanData;
     }
 
-    public string[] getSelectFromDB(string destinationURL, string[] varsToSelect, string table)
+    public void getSelectFromDB(string destinationURL, string[] varsToSelect, string table)
     {
         form = new WWWForm();
         for(int i = 0; i < varsToSelect.Length; i++)
@@ -69,11 +79,9 @@ public class InteractWithDB : MonoBehaviour{
 
         www = new WWW(destinationURL, form);
         StartCoroutine(WaitForRequest(www, true));
-
-        return cleanData;
     }
 
-    public string[] getSelectFromDB(string destinationURL, string[] varsToSelect, string[][] conditionValues, string table)
+    public void getSelectFromDB(string destinationURL, string[] varsToSelect, string[][] conditionValues, string table)
     {
         form = new WWWForm();
         for(int i = 0; i < varsToSelect.Length; i++)
@@ -90,8 +98,6 @@ public class InteractWithDB : MonoBehaviour{
 
         www = new WWW(destinationURL, form);
         StartCoroutine(WaitForRequest(www, true));
-
-        return cleanData;
     }
 
     private InteractWithDB()

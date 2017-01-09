@@ -13,6 +13,8 @@ public class Dossier : MonoBehaviour
     private RomanticDateList romanticDateList;
     private bool isPremium;
 
+    private InteractWithDB dbInteractionScript;
+
     protected long getDossierID()
     {
         return dossierID;
@@ -34,7 +36,7 @@ public class Dossier : MonoBehaviour
         return person.getPreferences();
     }
 
-    private long fetchIDFromServer()
+    private long fetchIDFromServers()
     {
         //TODO: Interface with the DB to fetch the dossier ID associated with the user
         staticScript.DestinationURL = "http://psiwebservice/fetchID.php";
@@ -43,6 +45,13 @@ public class Dossier : MonoBehaviour
         long returnID = Convert.ToInt64(staticScript.getSelectFromDB()[0]);
         return returnID;
     }
+
+    private void fetchIDFromServer(out long returnID)
+    {
+        dbInteractionScript.getSelectFromDB("http://psiwebservice/fetchID.php", new string[] { "id", staticScript.Username }, "pessoa", out long returnID);
+        returnID = -1;
+    }
+
     private bool fetchIsPremium()
     {
         //TODO: Interface with the DB to check if the dossier is tied to a premium account
@@ -54,7 +63,8 @@ public class Dossier : MonoBehaviour
     {
         //This will fill in the information by fecthing it from the database
         staticScript = GameObject.Find("HolderOfValues").GetComponent<StaticScript>();
-        dossierID = fetchIDFromServer();
+        dbInteractionScript = GameObject.Find("HolderOfValues").GetComponent<InteractWithDB>();
+        dossierID = fetchIDFromServers();
         person = GetComponent<Person>();
         isPremium = fetchIsPremium();
     }

@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class StaticScript : MonoBehaviour {
 
+    public string[] cleanData;
+
     static string username;
     static string password;
     static string dbTable;
@@ -15,6 +17,8 @@ public class StaticScript : MonoBehaviour {
     static bool isMonthlyPremium;
 
     private InteractWithDB dbInteractionScript;
+    private Object callingObject;
+    private bool hasRun;
 
     public string Username
     {
@@ -151,20 +155,32 @@ public class StaticScript : MonoBehaviour {
     public void sendToDB()
     {
         dbInteractionScript.sendToDB(DestinationURL, VarNames, VarValues, DbTable);
+        hasRun = false;
     }
 
-    public string[] getFromDB()
+    public void getFromDB()
     {
-        return dbInteractionScript.getFromDB(DestinationURL);
+        dbInteractionScript.getFromDB(DestinationURL);
+        hasRun = false;
     }
 
-    public string[] getSelectFromDB()
+    public void getSelectFromDB()
     {
-        return dbInteractionScript.getSelectFromDB(DestinationURL, VarNames, DbTable);
+        dbInteractionScript.getSelectFromDB(DestinationURL, VarNames, DbTable);
+        hasRun = false;
     }
 
     // Use this for initialization
     void Start () {
         dbInteractionScript = GetComponent<InteractWithDB>();
 	}
+
+    private void Update()
+    {
+        if(!dbInteractionScript.isWWWRequesting() && !hasRun)
+        {
+            cleanData = dbInteractionScript.getCleanData();
+            hasRun = true;
+        }
+    }
 }
