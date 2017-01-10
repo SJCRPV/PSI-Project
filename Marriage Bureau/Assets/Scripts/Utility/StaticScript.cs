@@ -127,60 +127,9 @@ public class StaticScript : MonoBehaviour {
         VarValues = null;
     }
 
-    //public void setCurrentTable(string tableName)
-    //{
-    //    DbTable = tableName;
-    //}
-
-    //public void setDestinationURL(string url)
-    //{
-    //    DestinationURL = url;
-    //}
-
-    //public void setVarNames(string[] newVarNames)
-    //{
-    //    VarNames = newVarNames;
-    //}
-
-    //public void setVarValues(string[] newVarValues)
-    //{
-    //    VarValues = newVarValues;
-    //}
-
-    //public void setIsMonthlyPremium(bool newBool)
-    //{
-    //    IsMonthlyPremium = newBool;
-    //}
-
-    public void sendToDB()
-    {
-        dbInteractionScript.sendToDB(DestinationURL, VarNames, VarValues, DbTable);
-        hasRun = false;
-    }
-
-    public void getFromDB()
-    {
-        dbInteractionScript.getFromDB(DestinationURL);
-        hasRun = false;
-    }
-
-    public void getSelectFromDB()
-    {
-        dbInteractionScript.getSelectFromDB(DestinationURL, VarNames, DbTable);
-        hasRun = false;
-    }
-
     // Use this for initialization
+
     void Start () {
         dbInteractionScript = GetComponent<InteractWithDB>();
 	}
-
-    private void Update()
-    {
-        if(!dbInteractionScript.isWWWRequesting() && !hasRun)
-        {
-            cleanData = dbInteractionScript.getCleanData();
-            hasRun = true;
-        }
-    }
 }

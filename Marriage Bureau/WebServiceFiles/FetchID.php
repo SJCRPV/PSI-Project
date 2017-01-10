@@ -1,11 +1,10 @@
 <?php
 	@include("connection.php");
 	
-	$id = $_POST['id'];
-	$username = $_POST['username'];
+	$id = $_POST['id'];	
 	$table = 'pessoa';
 	
-	$select = "SELECT $id FROM $table WHERE username = $username"
+	$select = "SELECT IDPESSOA FROM $table WHERE $id = IDPESSOA";
 	
 	$connection = mysqli_connect($server, $DBusername, $DBpassword, $database);
 	
@@ -13,7 +12,7 @@
 	
 	while($row = mysqli_fetch_array($result))
 	{
-		echo $row['id'] . "\n";
+		echo $row['IDPESSOA'];
 	}
 	
 	mysqli_close($connection);

@@ -1,19 +1,21 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Diagnostics;
 using System;
 
 public class Dossier : MonoBehaviour
 {
 
-    private StaticScript staticScript;
     private static long dossierID;
+    private bool isPremium;
+    private int runFunctionID;
+    private StaticScript staticScript;
     private Person person;
     private Person idealMatch;
     private NotificationList notificationList;
     private RomanticDateList romanticDateList;
-    private bool isPremium;
-
     private InteractWithDB dbInteractionScript;
+
 
     protected long getDossierID()
     {
@@ -36,26 +38,37 @@ public class Dossier : MonoBehaviour
         return person.getPreferences();
     }
 
-    private long fetchIDFromServers()
+    private void fetchIDFromServer()
     {
-        //TODO: Interface with the DB to fetch the dossier ID associated with the user
-        staticScript.DestinationURL = "http://psiwebservice/fetchID.php";
-        staticScript.DbTable = "pessoa";
-        staticScript.VarNames = new string[] { "id", staticScript.Username };
-        long returnID = Convert.ToInt64(staticScript.getSelectFromDB()[0]);
-        return returnID;
+        dbInteractionScript.getSingleFromDB("http://psiwebservice/fetchID.php", new string[] { "id", staticScript.Username });
     }
 
-    private void fetchIDFromServer(out long returnID)
+    private void fetchIsPremium()
     {
-        dbInteractionScript.getSelectFromDB("http://psiwebservice/fetchID.php", new string[] { "id", staticScript.Username }, "pessoa", out long returnID);
-        returnID = -1;
+        dbInteractionScript.getSingleFromDB("http://psiwebservice/fetchPremium.php", new string[] { "premium", "premium" });
     }
 
-    private bool fetchIsPremium()
+    private IEnumerator gatherInformation()
     {
-        //TODO: Interface with the DB to check if the dossier is tied to a premium account
-        return false;
+        fetchIDFromServer();
+        if(!dbInteractionScript.IsRequesting)
+        {
+            dossierID = Convert.ToInt64(dbInteractionScript.CleanData[0]);
+        }
+        else
+        {
+            yield return null;
+        }
+
+        fetchIsPremium();
+        if(!dbInteractionScript.IsRequesting)
+        {
+            isPremium = Convert.ToBoolean(dbInteractionScript.CleanData[0]);
+        }
+        else
+        {
+            yield return null;
+        }
     }
 
     // Use this for initialization
@@ -64,8 +77,6 @@ public class Dossier : MonoBehaviour
         //This will fill in the information by fecthing it from the database
         staticScript = GameObject.Find("HolderOfValues").GetComponent<StaticScript>();
         dbInteractionScript = GameObject.Find("HolderOfValues").GetComponent<InteractWithDB>();
-        dossierID = fetchIDFromServers();
-        person = GetComponent<Person>();
-        isPremium = fetchIsPremium();
+        StartCoroutine(gatherInformation());
     }
 }

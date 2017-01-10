@@ -1,30 +1,34 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+//Compile with: /unsafe
 
-public class InteractWithDB : MonoBehaviour{
-
+public class InteractWithDB : MonoBehaviour
+{
     private WWW www;
     private WWWForm form;
-    private string data;
     private string[] cleanData;
     private bool isRequesting;
 
-    public string[] getCleanData()
+    public bool IsRequesting
     {
-        return cleanData;
+        get
+        {
+            return isRequesting;
+        }
     }
 
-    public bool isWWWRequesting()
+    public string[] CleanData
     {
-        return isRequesting;
+        get
+        {
+            return cleanData;
+        }
     }
 
     private void prepareReturnData()
     {
-        data = www.text;
-        Debug.Log(data);
-        cleanData = data.Split(',');
+        cleanData = www.text.Split(',');
         Debug.Log(cleanData);
         isRequesting = false;
     }
@@ -43,22 +47,10 @@ public class InteractWithDB : MonoBehaviour{
             Debug.Log("WWW Error: " + www.error);
         }
 
-        if(hasDataToReturn)
+        if (hasDataToReturn)
         {
             prepareReturnData();
         }
-    }
-
-    public void sendToDB(string destinationURL, string[] varNames, string[] varValues, string dbTable)
-    {
-        form = new WWWForm();
-        for(int i = 0; i < varNames.Length; i++)
-        {
-            form.AddField(varNames[i], varValues[i]);
-        }
-        form.AddField(dbTable, dbTable);
-        www = new WWW(destinationURL, form);
-        StartCoroutine(WaitForRequest(www, false));
     }
 
     public void getFromDB(string destinationURL)
@@ -67,41 +59,40 @@ public class InteractWithDB : MonoBehaviour{
         StartCoroutine(WaitForRequest(www, true));
     }
 
-    public void getSelectFromDB(string destinationURL, string[] varsToSelect, string table)
+    public void getSingleFromDB(string destinationURL, string[] nameAndValue)
     {
         form = new WWWForm();
-        for(int i = 0; i < varsToSelect.Length; i++)
+        for(int i = 0; i < nameAndValue.Length; i++)
         {
-            form.AddField(varsToSelect[i], varsToSelect[i]);
+            form.AddField(nameAndValue[0], nameAndValue[1]);
         }
+        StartCoroutine(WaitForRequest(www, true));
+    }
 
-        form.AddField(table, table);
+    public void getSelectWhereFromDB(string destinationURL, string[] varNames, string[][] conditionsArray)
+    {
+        form = new WWWForm();
+        for(int i = 0; i < varNames.Length; i++)
+        {
+            form.AddField(varNames[i], varNames[i]);
+        }
+        for (int i = 0; i < conditionsArray.Length; i++)
+        {
+            form.AddField(conditionsArray[0][i], conditionsArray[1][i]);
+        }
 
         www = new WWW(destinationURL, form);
         StartCoroutine(WaitForRequest(www, true));
     }
 
-    public void getSelectFromDB(string destinationURL, string[] varsToSelect, string[][] conditionValues, string table)
+    public void sendToDB(string destinationURL, string[] varNames, string[] varValues)
     {
         form = new WWWForm();
-        for(int i = 0; i < varsToSelect.Length; i++)
+        for (int i = 0; i < varNames.Length; i++)
         {
-            form.AddField(varsToSelect[i], varsToSelect[i]);
+            form.AddField(varNames[i], varValues[i]);
         }
-
-        for(int i = 0; i < conditionValues.Length; i++)
-        {
-            form.AddField(conditionValues[0][i], conditionValues[1][i]);
-        }
-
-        form.AddField("table", table);
-
         www = new WWW(destinationURL, form);
-        StartCoroutine(WaitForRequest(www, true));
-    }
-
-    private InteractWithDB()
-    {
-        
+        StartCoroutine(WaitForRequest(www, false));
     }
 }
