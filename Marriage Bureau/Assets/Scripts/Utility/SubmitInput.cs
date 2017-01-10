@@ -10,16 +10,13 @@ public class SubmitInput : MonoBehaviour {
     private string[] varNames;
     [SerializeField]
     private string[] varValues;
-    [SerializeField]
-    private string tableName;
 
     private InputField nameField;
     private InputField emailField;
     private InputField usernameField;
     private InputField passwordField;
     private InputField confirmPassField;
-    //private InteractWithDB interactDBScript;
-    private StaticScript staticScript;
+    private InteractWithDB interactDBScript;
 
     //TODO: The Register page, as it is, is not exactly compatible with how things are set up in the DB. Have it insert password and username and save the other values for later.
     public void gatherInput()
@@ -29,14 +26,9 @@ public class SubmitInput : MonoBehaviour {
         varValues[2] = usernameField.text;
         //TODO: Look into hashing these if you have the time;
         varValues[3] = passwordField.text;
-        if (varValues[3] == confirmPassField.text)
+        if (varValues[3].Equals(confirmPassField.text))
         {
-            //interactDBScript.sendToDB(destinationURL, varNames, varValues);
-            staticScript.DestinationURL = destinationURL;
-            staticScript.VarNames = varNames;
-            staticScript.VarValues = varValues;
-            staticScript.DbTable = tableName;
-            staticScript.sendToDB();
+            interactDBScript.sendToDB(destinationURL, varNames, varValues);
         }
         else
         {
@@ -53,8 +45,8 @@ public class SubmitInput : MonoBehaviour {
         usernameField = GameObject.Find("UsernameInputField").GetComponent<InputField>();
         passwordField = GameObject.Find("PasswordInputField").GetComponent<InputField>();
         confirmPassField = GameObject.Find("ConfirmPassInputField").GetComponent<InputField>();
-        //interactDBScript = GetComponent<InteractWithDB>();
-        staticScript = GameObject.Find("HolderOfValues").GetComponent<StaticScript>();
+        interactDBScript = GetComponent<InteractWithDB>();
+        //staticScript = GameObject.Find("HolderOfValues").GetComponent<StaticScript>();
         //varNames = new string[] { "Name", "Email", "Username", "Password"};
         varValues = new string[varNames.Length];
     }

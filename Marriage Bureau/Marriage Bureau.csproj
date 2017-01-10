@@ -76,7 +76,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\Classes\Dossier.cs" />
-    <Compile Include="Assets\Scripts\Classes\Generic.cs" />
     <Compile Include="Assets\Scripts\Classes\LimitedProfile.cs" />
     <Compile Include="Assets\Scripts\Classes\Notification.cs" />
     <Compile Include="Assets\Scripts\Classes\NotificationList.cs" />

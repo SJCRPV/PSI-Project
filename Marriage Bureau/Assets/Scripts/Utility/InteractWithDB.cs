@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-//Compile with: /unsafe
 
 public class InteractWithDB : MonoBehaviour
 {

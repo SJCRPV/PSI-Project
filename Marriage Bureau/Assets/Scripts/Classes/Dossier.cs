@@ -1,21 +1,19 @@
 ﻿using UnityEngine;
 using System.Collections;
-using System.Diagnostics;
 using System;
 
 public class Dossier : MonoBehaviour
 {
 
-    private static long dossierID;
-    private bool isPremium;
-    private int runFunctionID;
-    private StaticScript staticScript;
+    protected InteractWithDB dbInteractionScript;
+    protected User userScript;
+    protected static long dossierID;
+
     private Person person;
     private Person idealMatch;
     private NotificationList notificationList;
     private RomanticDateList romanticDateList;
-    private InteractWithDB dbInteractionScript;
-
+    private bool isPremium;
 
     protected long getDossierID()
     {
@@ -40,7 +38,7 @@ public class Dossier : MonoBehaviour
 
     private void fetchIDFromServer()
     {
-        dbInteractionScript.getSingleFromDB("http://psiwebservice/fetchID.php", new string[] { "id", staticScript.Username });
+        dbInteractionScript.getSingleFromDB("http://psiwebservice/fetchID.php", new string[] { "id", userScript.Username });
     }
 
     private void fetchIsPremium()
@@ -75,8 +73,8 @@ public class Dossier : MonoBehaviour
     void Start()
     {
         //This will fill in the information by fecthing it from the database
-        staticScript = GameObject.Find("HolderOfValues").GetComponent<StaticScript>();
         dbInteractionScript = GameObject.Find("HolderOfValues").GetComponent<InteractWithDB>();
+        userScript = GameObject.Find("HolderOfValues").GetComponent<User>();
         StartCoroutine(gatherInformation());
     }
 }
