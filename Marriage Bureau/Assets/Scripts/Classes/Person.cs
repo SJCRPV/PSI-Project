@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using System;
 
 public class Person : Dossier {
 
@@ -8,7 +9,6 @@ public class Person : Dossier {
     private string fullName;
     private bool sex;
     private int age;
-    private float height;
     private string address;
     private string profilePhoto;
 
@@ -19,10 +19,6 @@ public class Person : Dossier {
     public string getAddress()
     {
         return address;
-    }
-    public float getHeight()
-    {
-        return height;
     }
     public int getAge()
     {
@@ -47,9 +43,18 @@ public class Person : Dossier {
         return tmpStr;
     }
 
-    private void fetchPersonFromServer()
+    private IEnumerator fetchPersonFromServer()
     {
-        //TODO: Interface with the server to gather physical data
+        string dossierID = Convert.ToString(getDossierID());
+        dbInteractionScript.getSingleFromDB("http://psiwebservice/fetchPerson.php", new string[] { "IDPESSOA", dossierID });
+        if(dbInteractionScript.IsRequesting)
+        {
+            yield return null;
+        }
+        else
+        {
+
+        }
     }
 
 	// Use this for initialization

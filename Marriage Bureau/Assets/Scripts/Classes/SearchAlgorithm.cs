@@ -4,12 +4,11 @@ using System.Collections.Generic;
 
 public class SearchAlgorithm : MonoBehaviour {
 
-    public float thresholdRatioForMatch;
-    //Defaults to 10 at this point.
-    public int sizeOfMatchBatch = 10;
+    public float minimumRatioForMatch;
+    //Defaults to 4 at this point.
+    public int sizeOfMatchBatch = 4;
 
     private List<Dossier> confirmedMatches;
-    private List<Dossier> currentDossier10Batch;
     //User requesting the scan
     private Dossier originDossier;
     private Person originPerson;
@@ -21,7 +20,7 @@ public class SearchAlgorithm : MonoBehaviour {
     private Person currentScanPerson;
     private Personality currentScanPersonality;
 
-    //CONSIDER: Load in batches of 10. At the end of this, send it to be displayed.
+    //CONSIDER: Load in batches of 4. At the end of this, send it to be displayed.
     //TODO: Define threshold ratio to consider it for matching. Note that the defaults are also part of the PersonalLike list so they will always get added to the "confirmedTopics"
     //TODO: SEE IF YOU CAN MAKE THIS CODE MORE READABLE BY HAVING SHORTER INSTRUCTIONS!!!
 
@@ -70,7 +69,7 @@ public class SearchAlgorithm : MonoBehaviour {
             {
                 confirmedTopics.Add(new int[2] {j,i});
 
-                if(confirmedTopics.Count/originCount >= thresholdRatioForMatch)
+                if(confirmedTopics.Count/originCount >= minimumRatioForMatch)
                 {
                     confirmedMatches.Add(currentScanDossier);
                     if(confirmedMatches.Count % sizeOfMatchBatch == 0)
@@ -115,7 +114,6 @@ public class SearchAlgorithm : MonoBehaviour {
 	// Use this for initialization
 	void Start ()
     {
-        //Dummy code to get access to the intellisense. This is probably even in the wrong place.
         originDossier = GameObject.Find("User").GetComponent<Dossier>();
         originPerson = originDossier.GetComponent<Person>();
         originPersonality = originPerson.GetComponent<Personality>();

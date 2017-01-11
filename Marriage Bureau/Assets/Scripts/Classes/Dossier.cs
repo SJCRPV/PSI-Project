@@ -1,9 +1,14 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
 
-public abstract class Dossier : MonoBehaviour
+public class Dossier : MonoBehaviour
 {
-    private static long dossierID;
+
+    protected InteractWithDB dbInteractionScript;
+    protected User userScript;
+    protected static long dossierID;
+
     private Person person;
     private Person idealMatch;
     private NotificationList notificationList;
@@ -31,23 +36,45 @@ public abstract class Dossier : MonoBehaviour
         return person.getPreferences();
     }
 
-    private long fetchIDFromServer()
+    private void fetchIDFromServer()
     {
-        //TODO: interface with the DB to fetch the dossier ID associated with the user
-        return -1;
+        dbInteractionScript.getSingleFromDB("http://psiwebservice/fetchID.php", new string[] { "id", userScript.Username });
     }
-    private bool fetchIsPremium()
+
+    private void fetchIsPremium()
     {
-        //TODO: Interface with the DB to check if the dossier is tied to a premium account
-        return false;
+        dbInteractionScript.getSingleFromDB("http://psiwebservice/fetchPremium.php", new string[] { "premium", "premium" });
+    }
+
+    private IEnumerator gatherInformation()
+    {
+        fetchIDFromServer();
+        if(!dbInteractionScript.IsRequesting)
+        {
+            dossierID = Convert.ToInt64(dbInteractionScript.CleanData[0]);
+        }
+        else
+        {
+            yield return null;
+        }
+
+        fetchIsPremium();
+        if(!dbInteractionScript.IsRequesting)
+        {
+            isPremium = Convert.ToBoolean(dbInteractionScript.CleanData[0]);
+        }
+        else
+        {
+            yield return null;
+        }
     }
 
     // Use this for initialization
     void Start()
     {
         //This will fill in the information by fecthing it from the database
-        dossierID = fetchIDFromServer();
-        person = GetComponent<Person>();
-        isPremium = fetchIsPremium();
+        dbInteractionScript = GameObject.Find("HolderOfValues").GetComponent<InteractWithDB>();
+        userScript = GameObject.Find("HolderOfValues").GetComponent<User>();
+        StartCoroutine(gatherInformation());
     }
 }
