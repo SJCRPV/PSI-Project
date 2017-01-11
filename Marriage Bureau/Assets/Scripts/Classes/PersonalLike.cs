@@ -29,4 +29,10 @@ public class PersonalLike : MonoBehaviour {
         }
         return t;
     }
+
+    public PersonalLike(string newFieldName, string[] newFieldElements)
+    {
+        fieldName = newFieldName;
+        fieldElements = newFieldElements;
+    }
 }

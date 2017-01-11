@@ -1,12 +1,16 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using System;
 
 public class SearchAlgorithm : MonoBehaviour {
 
     public float minimumRatioForMatch;
     //Defaults to 4 at this point.
     public int sizeOfMatchBatch = 4;
+
+    private InteractWithDB dbInteractionScript;
+    private long userCount;
 
     private List<Dossier> confirmedMatches;
     //User requesting the scan
@@ -88,8 +92,34 @@ public class SearchAlgorithm : MonoBehaviour {
         }
     }
 
-    private void initiateSearch()
+    private void buildCurrentScanDossier(long dossierID, bool isPremium)
     {
+
+        currentScanPersonality = new Personality(newTraits, newFilms, newColours, newSongs, newExtras);
+        currentScanPerson = new Person(newFullName, newIsMale, newAge, newAddress, newProfilePhoto, currentScanPersonality);
+        currentScanDossier = new Dossier(dossierID, isPremium, currentScanPerson);
+    }
+
+    private IEnumerator initiateSearch()
+    {
+        dbInteractionScript.getFromDB("http://psiwebservice/getTotalUserCount.php");
+        while(dbInteractionScript.IsRequesting)
+        {
+            yield return null;
+        }
+        userCount = Convert.ToInt64(dbInteractionScript.CleanData[0]);
+
+        for(int i = 0; i < userCount; i++)
+        {
+            dbInteractionScript.getSingleFromDB("http://psiwebservice/getHobbiesOfID.php", new string[2] { "id", i.ToString()});
+            while(dbInteractionScript.IsRequesting)
+            {
+                yield return null;
+            }
+            string[] hobbyIDs = dbInteractionScript.CleanData;
+            currentScanDossier = new Dossier()
+        }
+
         //TODO: Interact with DB to fetch user list
         //TODO: Find a way to deep search the 4 default categories
         originCount = originPersonality.getPreferences().Count;
@@ -117,6 +147,7 @@ public class SearchAlgorithm : MonoBehaviour {
         originDossier = GameObject.Find("User").GetComponent<Dossier>();
         originPerson = originDossier.GetComponent<Person>();
         originPersonality = originPerson.GetComponent<Personality>();
+        dbInteractionScript = GameObject.Find("HolderOfValues").GetComponent<InteractWithDB>();
         initiateSearch();
     }
 	

@@ -2,7 +2,7 @@
 using System.Collections;
 using System;
 
-public class Dossier : MonoBehaviour
+public class Dossier
 {
 
     protected InteractWithDB dbInteractionScript;
@@ -49,32 +49,31 @@ public class Dossier : MonoBehaviour
     private IEnumerator gatherInformation()
     {
         fetchIDFromServer();
-        if(!dbInteractionScript.IsRequesting)
-        {
-            dossierID = Convert.ToInt64(dbInteractionScript.CleanData[0]);
-        }
-        else
+        while(dbInteractionScript.IsRequesting)
         {
             yield return null;
         }
+        dossierID = Convert.ToInt64(dbInteractionScript.CleanData[0]);
 
         fetchIsPremium();
-        if(!dbInteractionScript.IsRequesting)
-        {
-            isPremium = Convert.ToBoolean(dbInteractionScript.CleanData[0]);
-        }
-        else
+        while(dbInteractionScript.IsRequesting)
         {
             yield return null;
         }
+        isPremium = Convert.ToBoolean(dbInteractionScript.CleanData[0]);
     }
 
-    // Use this for initialization
-    void Start()
+    protected Dossier()
     {
-        //This will fill in the information by fecthing it from the database
         dbInteractionScript = GameObject.Find("HolderOfValues").GetComponent<InteractWithDB>();
         userScript = GameObject.Find("HolderOfValues").GetComponent<User>();
-        StartCoroutine(gatherInformation());
+        gatherInformation();
+    }
+
+    public Dossier(long newDossierID, bool newIsPremium, Person newPerson)
+    {
+        dossierID = newDossierID;
+        isPremium = newIsPremium;
+        person = newPerson;
     }
 }
