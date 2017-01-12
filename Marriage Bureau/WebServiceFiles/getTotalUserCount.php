@@ -10,4 +10,6 @@
 	$row = mysqli_fetch_array($result)
 	
 	echo $row['Count'];
+	
+	mysqli_close($connection);
 ?>

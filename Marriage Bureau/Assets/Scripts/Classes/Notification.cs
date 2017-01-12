@@ -6,6 +6,7 @@ public class Notification : MonoBehaviour {
     private long time;
     private string text;
     private bool isSeen;
+    private bool isMatchProposal;
 
 	// Use this for initialization
 	void Start () {

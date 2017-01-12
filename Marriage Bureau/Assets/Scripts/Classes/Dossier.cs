@@ -4,7 +4,6 @@ using System;
 
 public class Dossier
 {
-
     protected InteractWithDB dbInteractionScript;
     protected User userScript;
     protected static long dossierID;
@@ -38,12 +37,17 @@ public class Dossier
 
     private void fetchIDFromServer()
     {
-        dbInteractionScript.getSingleFromDB("http://psiwebservice/fetchID.php", new string[] { "id", userScript.Username });
+        dbInteractionScript.getSingleFromDB("http://psiwebservice/fetchID.php", new string[2] { "id", userScript.Username });
     }
 
     private void fetchIsPremium()
     {
-        dbInteractionScript.getSingleFromDB("http://psiwebservice/fetchPremium.php", new string[] { "premium", "premium" });
+        dbInteractionScript.getSingleFromDB("http://psiwebservice/fetchPremium.php", new string[2] { "premium", "premium" });
+    }
+
+    private void fetchNotifications()
+    {
+        dbInteractionScript.getSingleFromDB("http://psiwebservice/fetchNotifications.php", new string[2] { "username", userScript.Username });
     }
 
     private IEnumerator gatherInformation()
@@ -61,6 +65,12 @@ public class Dossier
             yield return null;
         }
         isPremium = Convert.ToBoolean(dbInteractionScript.CleanData[0]);
+
+        fetchNotifications();
+        while(dbInteractionScript.IsRequesting)
+        {
+            yield return null;
+        }
     }
 
     protected Dossier()

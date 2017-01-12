@@ -94,7 +94,6 @@ public class SearchAlgorithm : MonoBehaviour {
 
     private void buildCurrentScanDossier(long dossierID, bool isPremium, string[] deets, string[] hobbies)
     {
-<<<<<<< HEAD
         PersonalLike newTraits = new PersonalLike("Traits", new string[] { "" });
         PersonalLike newFilms = new PersonalLike("Films", new string[] { "" });
         PersonalLike newColours = new PersonalLike("Colours", new string[] { "" });
@@ -103,12 +102,6 @@ public class SearchAlgorithm : MonoBehaviour {
         currentScanPersonality = new Personality(newTraits, newFilms, newColours, newSongs, newExtras);
         currentScanPerson = new Person(deets[0], Convert.ToBoolean(deets[1]), Convert.ToInt32(deets[2]), deets[3], deets[4], currentScanPersonality);
         currentScanDossier = new Dossier(dossierID, isPremium, currentScanPerson);
-=======
-
-        //currentScanPersonality = new Personality(newTraits, newFilms, newColours, newSongs, newExtras);
-        //currentScanPerson = new Person(newFullName, newIsMale, newAge, newAddress, newProfilePhoto, currentScanPersonality);
-        //currentScanDossier = new Dossier(dossierID, isPremium, currentScanPerson);
->>>>>>> 76410a44528815873431b25615d7724189a43275
     }
 
     private IEnumerator initiateSearch()
@@ -141,19 +134,16 @@ public class SearchAlgorithm : MonoBehaviour {
             {
                 yield return null;
             }
-            string[] = dbInteractionScript.CleanData;
+            string[] deets = dbInteractionScript.CleanData;
 
             dbInteractionScript.getSingleFromDB("http://psiwebservice/getHobbiesOfID.php", new string[2] { "id", i.ToString()});
             while(dbInteractionScript.IsRequesting)
             {
                 yield return null;
             }
-            string[] hobbyIDs = dbInteractionScript.CleanData;
-<<<<<<< HEAD
-            buildCurrentScanDossier(dossierID, isPremium, )
-=======
-            // currentScanDossier = new Dossier();
->>>>>>> 76410a44528815873431b25615d7724189a43275
+            string[] hobbies = dbInteractionScript.CleanData;
+
+            buildCurrentScanDossier(dossierID, isPremium, deets, hobbies);
         }
 
         //TODO: Interact with DB to fetch user list
@@ -181,13 +171,8 @@ public class SearchAlgorithm : MonoBehaviour {
 	void Start ()
     {
         originDossier = GameObject.Find("User").GetComponent<Dossier>();
-<<<<<<< HEAD
         originPerson = new Person();
         originPersonality = new Personality();
-=======
-        //originPerson = originDossier.GetComponent<Person>();
-        //originPersonality = originPerson.GetComponent<Personality>();
->>>>>>> 76410a44528815873431b25615d7724189a43275
         dbInteractionScript = GameObject.Find("HolderOfValues").GetComponent<InteractWithDB>();
         initiateSearch();
     }
