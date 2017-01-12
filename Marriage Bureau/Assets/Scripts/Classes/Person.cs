@@ -53,7 +53,7 @@ public class Person : Dossier {
         }
     }
 
-    protected Person()
+    public Person()
     {
         fetchPersonFromServer();
     }

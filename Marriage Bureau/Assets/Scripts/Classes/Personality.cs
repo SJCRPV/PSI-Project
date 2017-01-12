@@ -47,6 +47,11 @@ public class Personality : Person {
         return temp;
     }
 
+    public Personality()
+    {
+
+    }
+
     public Personality(PersonalLike newTraits, PersonalLike newFilms, PersonalLike newColours, PersonalLike newSongs, List<PersonalLike> newExtras)
     {
         traits = newTraits;

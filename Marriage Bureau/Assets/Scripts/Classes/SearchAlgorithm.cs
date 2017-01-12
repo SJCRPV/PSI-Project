@@ -92,11 +92,15 @@ public class SearchAlgorithm : MonoBehaviour {
         }
     }
 
-    private void buildCurrentScanDossier(long dossierID, bool isPremium)
+    private void buildCurrentScanDossier(long dossierID, bool isPremium, string[] deets, string[] hobbies)
     {
-
+        PersonalLike newTraits = new PersonalLike("Traits", new string[] { "" });
+        PersonalLike newFilms = new PersonalLike("Films", new string[] { "" });
+        PersonalLike newColours = new PersonalLike("Colours", new string[] { "" });
+        PersonalLike newSongs = new PersonalLike("Songs", new string[] { "" });
+        List<PersonalLike> newExtras = new List<PersonalLike>();
         currentScanPersonality = new Personality(newTraits, newFilms, newColours, newSongs, newExtras);
-        currentScanPerson = new Person(newFullName, newIsMale, newAge, newAddress, newProfilePhoto, currentScanPersonality);
+        currentScanPerson = new Person(deets[0], Convert.ToBoolean(deets[1]), Convert.ToInt32(deets[2]), deets[3], deets[4], currentScanPersonality);
         currentScanDossier = new Dossier(dossierID, isPremium, currentScanPerson);
     }
 
@@ -111,13 +115,34 @@ public class SearchAlgorithm : MonoBehaviour {
 
         for(int i = 0; i < userCount; i++)
         {
+            dbInteractionScript.getSingleFromDB("http://psiwebservice/FetchID.php", new string[2] { "id", i.ToString() });
+            while (dbInteractionScript.IsRequesting)
+            {
+                yield return null;
+            }
+            long dossierID = Convert.ToInt64(dbInteractionScript.CleanData[0]);
+
+            dbInteractionScript.getSingleFromDB("http://psiwebservice/fetchIsPremium.php", new string[2] { "id", i.ToString() });
+            while (dbInteractionScript.IsRequesting)
+            {
+                yield return null;
+            }
+            bool isPremium = Convert.ToBoolean(dbInteractionScript.CleanData[0]);
+
+            dbInteractionScript.getSingleFromDB("http://psiwebservice/getDeetsOfID.php", new string[2] { "id", i.ToString() });
+            while (dbInteractionScript.IsRequesting)
+            {
+                yield return null;
+            }
+            string[] = dbInteractionScript.CleanData;
+
             dbInteractionScript.getSingleFromDB("http://psiwebservice/getHobbiesOfID.php", new string[2] { "id", i.ToString()});
             while(dbInteractionScript.IsRequesting)
             {
                 yield return null;
             }
             string[] hobbyIDs = dbInteractionScript.CleanData;
-            currentScanDossier = new Dossier()
+            buildCurrentScanDossier(dossierID, isPremium, )
         }
 
         //TODO: Interact with DB to fetch user list
@@ -145,8 +170,8 @@ public class SearchAlgorithm : MonoBehaviour {
 	void Start ()
     {
         originDossier = GameObject.Find("User").GetComponent<Dossier>();
-        originPerson = originDossier.GetComponent<Person>();
-        originPersonality = originPerson.GetComponent<Personality>();
+        originPerson = new Person();
+        originPersonality = new Personality();
         dbInteractionScript = GameObject.Find("HolderOfValues").GetComponent<InteractWithDB>();
         initiateSearch();
     }
