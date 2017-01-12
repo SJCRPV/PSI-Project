@@ -95,9 +95,9 @@ public class SearchAlgorithm : MonoBehaviour {
     private void buildCurrentScanDossier(long dossierID, bool isPremium)
     {
 
-        currentScanPersonality = new Personality(newTraits, newFilms, newColours, newSongs, newExtras);
-        currentScanPerson = new Person(newFullName, newIsMale, newAge, newAddress, newProfilePhoto, currentScanPersonality);
-        currentScanDossier = new Dossier(dossierID, isPremium, currentScanPerson);
+        //currentScanPersonality = new Personality(newTraits, newFilms, newColours, newSongs, newExtras);
+        //currentScanPerson = new Person(newFullName, newIsMale, newAge, newAddress, newProfilePhoto, currentScanPersonality);
+        //currentScanDossier = new Dossier(dossierID, isPremium, currentScanPerson);
     }
 
     private IEnumerator initiateSearch()
@@ -117,7 +117,7 @@ public class SearchAlgorithm : MonoBehaviour {
                 yield return null;
             }
             string[] hobbyIDs = dbInteractionScript.CleanData;
-            currentScanDossier = new Dossier()
+            // currentScanDossier = new Dossier();
         }
 
         //TODO: Interact with DB to fetch user list
@@ -145,8 +145,8 @@ public class SearchAlgorithm : MonoBehaviour {
 	void Start ()
     {
         originDossier = GameObject.Find("User").GetComponent<Dossier>();
-        originPerson = originDossier.GetComponent<Person>();
-        originPersonality = originPerson.GetComponent<Personality>();
+        //originPerson = originDossier.GetComponent<Person>();
+        //originPersonality = originPerson.GetComponent<Personality>();
         dbInteractionScript = GameObject.Find("HolderOfValues").GetComponent<InteractWithDB>();
         initiateSearch();
     }

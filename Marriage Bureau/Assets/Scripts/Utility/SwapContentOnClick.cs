@@ -4,6 +4,8 @@ using UnityEngine.UI;
 
 public class SwapContentOnClick : MonoBehaviour
 {
+    //TODO:REWRITE MOTHERFUCKER!!!!!!!
+
     [SerializeField]
     private Sprite inactiveSprite;
     [SerializeField]
@@ -12,6 +14,8 @@ public class SwapContentOnClick : MonoBehaviour
     private float activeHeight;
     [SerializeField]
     private float inactiveHeight;
+    [SerializeField]
+    private string parentName;
 
     private GameObject parentContent;
     private Image imageScript;
@@ -80,11 +84,7 @@ public class SwapContentOnClick : MonoBehaviour
         imageScript = gameObject.GetComponentInChildren<Image>();
         textScript = gameObject.transform.GetChild(0).gameObject.GetComponentInChildren<Text>();
         objectRectTransform = gameObject.transform.GetChild(0).gameObject.GetComponent<RectTransform>();
-        if(!objectRectTransform.name.Equals("GameObject"))
-        {
-            Debug.LogError("I didn't grab the right object! I grabbed " + objectRectTransform.name);
-        }
-        parentContent = GameObject.Find("Content");
+        parentContent = GameObject.Find(parentName);
         associatedContent = gameObject.name;
     }
 }
