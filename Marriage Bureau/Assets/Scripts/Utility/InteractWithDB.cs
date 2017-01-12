@@ -61,10 +61,7 @@ public class InteractWithDB : MonoBehaviour
     public void getSingleFromDB(string destinationURL, string[] nameAndValue)
     {
         form = new WWWForm();
-        for(int i = 0; i < nameAndValue.Length; i++)
-        {
-            form.AddField(nameAndValue[0], nameAndValue[1]);
-        }
+        form.AddField(nameAndValue[0], nameAndValue[1]);
         StartCoroutine(WaitForRequest(www, true));
     }
 

@@ -47,18 +47,24 @@ public class Person : Dossier {
     {
         string dossierID = Convert.ToString(getDossierID());
         dbInteractionScript.getSingleFromDB("http://psiwebservice/fetchPerson.php", new string[] { "IDPESSOA", dossierID });
-        if(dbInteractionScript.IsRequesting)
+        while(dbInteractionScript.IsRequesting)
         {
             yield return null;
         }
-        else
-        {
-
-        }
     }
 
-	// Use this for initialization
-	void Start () {
+    protected Person()
+    {
         fetchPersonFromServer();
-	}
+    }
+
+    public Person(string newFullName, bool newIsMale, int newAge, string newAddress, string newProfilePhoto, Personality newPersonality)
+    {
+        fullName = newFullName;
+        sex = newIsMale;
+        age = newAge;
+        address = newAddress;
+        profilePhoto = newProfilePhoto;
+        personality = newPersonality;
+    }
 }
