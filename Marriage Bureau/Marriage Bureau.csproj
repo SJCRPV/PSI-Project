@@ -93,6 +93,7 @@
     <Compile Include="Assets\Scripts\Classes\RomanticDateStep.cs" />
     <Compile Include="Assets\Scripts\Classes\SearchAlgorithm.cs" />
     <Compile Include="Assets\Scripts\Classes\User.cs" />
+    <Compile Include="Assets\Scripts\External\TabNavigation.cs" />
     <Compile Include="Assets\Scripts\Utility\AdaptToScreenSize.cs" />
     <Compile Include="Assets\Scripts\Utility\BackgroundSpriteScroll.cs" />
     <Compile Include="Assets\Scripts\Utility\ButtonPress.cs" />
@@ -103,6 +104,7 @@
     <Compile Include="Assets\Scripts\Utility\SubmitInput.cs" />
     <Compile Include="Assets\Scripts\Utility\SwapContentOnClick.cs" />
     <Compile Include="Assets\Scripts\Utility\TestDBOutput.cs" />
+    <Compile Include="Assets\Scripts\Utility\ToggleContent.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />

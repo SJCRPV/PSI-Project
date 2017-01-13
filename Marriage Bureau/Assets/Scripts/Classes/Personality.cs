@@ -4,7 +4,6 @@ using System.Collections.Generic;
 
 public class Personality : Person {
 
-    //TODO: Get a public definition of an IEnumerator. Likely just a public List. Or at least serialized.
     private PersonalLike traits;
     private PersonalLike films;
     private PersonalLike colours;
@@ -36,7 +35,7 @@ public class Personality : Person {
         return temp;
     }
 
-    private List<PersonalLike> getDefaultPLikes()
+    public List<PersonalLike> getDefaultPLikes()
     {
         List<PersonalLike> temp = new List<PersonalLike>();
         temp.Add(traits);
@@ -45,6 +44,11 @@ public class Personality : Person {
         temp.Add(songs);
 
         return temp;
+    }
+
+    public Personality()
+    {
+
     }
 
     public Personality(PersonalLike newTraits, PersonalLike newFilms, PersonalLike newColours, PersonalLike newSongs, List<PersonalLike> newExtras)

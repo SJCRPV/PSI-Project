@@ -5,19 +5,19 @@ using System.Collections.Generic;
 public class RomanticDateList {
 
     private List<RomanticDate> dateList;
-    private int dossierID;
+    private long dossierID;
 
     public void addRomanticDate(RomanticDate newRomanticDate)
     {
         dateList.Add(newRomanticDate);
     }
 
-    public int getOriginDossierID()
+    public long getOriginDossierID()
     {
         return dossierID;
     }
     
-    public RomanticDateList(int originDossierID)
+    public RomanticDateList(long originDossierID)
     {
         dossierID = originDossierID;
     }

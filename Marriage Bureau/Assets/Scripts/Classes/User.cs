@@ -5,7 +5,6 @@ using UnityEngine.UI;
 public class User : Dossier {
     //TODO: The whole class. 
     static string username;
-    static string password;
 
     public string Username
     {
@@ -20,29 +19,14 @@ public class User : Dossier {
         }
     }
 
-    public string Password
-    {
-        get
-        {
-            return password;
-        }
-
-        set
-        {
-            password = value;
-        }
-    }
-
     public void fetchLoginValues()
     {
         Username = GameObject.Find("Username").GetComponent<InputField>().text;
-        Password = GameObject.Find("Password").GetComponent<InputField>().text;
     }
 
     public void clearValues()
     {
         Username = "";
-        Password = "";
     }
 
 
