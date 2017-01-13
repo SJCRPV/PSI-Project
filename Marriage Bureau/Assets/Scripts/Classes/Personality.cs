@@ -36,7 +36,7 @@ public class Personality : Person {
         return temp;
     }
 
-    private List<PersonalLike> getDefaultPLikes()
+    public List<PersonalLike> getDefaultPLikes()
     {
         List<PersonalLike> temp = new List<PersonalLike>();
         temp.Add(traits);

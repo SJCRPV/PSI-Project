@@ -37,7 +37,7 @@ public class SwapContentOnClick : MonoBehaviour
 
     private void swapTextColour(bool isClicked)
     {
-        if(isClicked)
+        if (isClicked)
         {
             textScript.color = Color.white;
         }
@@ -49,7 +49,7 @@ public class SwapContentOnClick : MonoBehaviour
 
     private void adjustObjectHeight(bool isClicked)
     {
-        if(isClicked)
+        if (isClicked)
         {
             objectRectTransform.sizeDelta = new Vector2(objectRectTransform.rect.width, activeHeight);
         }
