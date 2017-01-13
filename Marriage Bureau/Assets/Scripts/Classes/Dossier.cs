@@ -35,6 +35,11 @@ public class Dossier
         return person.getPreferences();
     }
 
+    protected bool getIsMale()
+    {
+        return person.getIsMale();
+    }
+
     private void fetchIDFromServer()
     {
         dbInteractionScript.getSingleFromDB("http://psiwebservice/fetchID.php", new string[2] { "id", userScript.Username });

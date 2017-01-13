@@ -6,6 +6,7 @@ public class LimitedProfile : Dossier {
     private long originDossierID;
     private string profileName;
     private string district;
+    private bool isMale;
     private int age;
     private string[] abridgedPreferences;
     
@@ -19,6 +20,11 @@ public class LimitedProfile : Dossier {
     {
         string[] possibleDistrict = getDossierAddress().Split(' ');
         return possibleDistrict[possibleDistrict.Length];
+    }
+
+    private bool findIfMale()
+    {
+        return getIsMale();
     }
 
     private string[] findAbridgedPreferences()

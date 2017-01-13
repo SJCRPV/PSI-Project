@@ -17,6 +17,7 @@ public class SubmitInput : MonoBehaviour {
     private InputField passwordField;
     private InputField confirmPassField;
     private InteractWithDB interactDBScript;
+    private ButtonPress buttonPressScript;
 
     //TODO: The Register page, as it is, is not exactly compatible with how things are set up in the DB. Have it insert password and username and save the other values for later.
     public void gatherInput()
@@ -29,6 +30,7 @@ public class SubmitInput : MonoBehaviour {
         if (varValues[3].Equals(confirmPassField.text))
         {
             interactDBScript.sendToDB(destinationURL, varNames, varValues);
+            buttonPressScript.loadScene();
         }
         else
         {
@@ -39,15 +41,13 @@ public class SubmitInput : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        //TODO: Find way of assigning these variables in a generic way so you don't have to hardcode it
         nameField = GameObject.Find("NomeInputField").GetComponent<InputField>();
         emailField = GameObject.Find("EmailInputField").GetComponent<InputField>();
         usernameField = GameObject.Find("UsernameInputField").GetComponent<InputField>();
         passwordField = GameObject.Find("PasswordInputField").GetComponent<InputField>();
         confirmPassField = GameObject.Find("ConfirmPassInputField").GetComponent<InputField>();
         interactDBScript = GetComponent<InteractWithDB>();
-        //staticScript = GameObject.Find("HolderOfValues").GetComponent<StaticScript>();
-        //varNames = new string[] { "Name", "Email", "Username", "Password"};
+        buttonPressScript = GetComponent<ButtonPress>();
         varValues = new string[varNames.Length];
     }
 }
