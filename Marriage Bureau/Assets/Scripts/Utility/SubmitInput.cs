@@ -29,7 +29,7 @@ public class SubmitInput : MonoBehaviour {
         varValues[3] = passwordField.text;
         if (varValues[3].Equals(confirmPassField.text))
         {
-            interactDBScript.sendToDB(destinationURL, varNames, varValues);
+            //interactDBScript.sendToDB(destinationURL, varNames, varValues);
             buttonPressScript.loadScene();
         }
         else
