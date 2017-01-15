@@ -2,17 +2,12 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class NotificationList : MonoBehaviour {
+public class NotificationList {
 
     private List<Notification> notificationList;
 
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
+    public void addNotification(Notification notificationToAdd)
+    {
+        notificationList.Add(notificationToAdd);
+    }
 }

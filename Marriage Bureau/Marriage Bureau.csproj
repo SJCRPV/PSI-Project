@@ -88,12 +88,16 @@
     <Compile Include="Assets\Scripts\Classes\SearchAlgorithm.cs" />
     <Compile Include="Assets\Scripts\Classes\User.cs" />
     <Compile Include="Assets\Scripts\External\TabNavigation.cs" />
+    <Compile Include="Assets\Scripts\Utility\ActivateSearchAlgorithm.cs" />
     <Compile Include="Assets\Scripts\Utility\AdaptToScreenSize.cs" />
     <Compile Include="Assets\Scripts\Utility\BackgroundSpriteScroll.cs" />
     <Compile Include="Assets\Scripts\Utility\ButtonPress.cs" />
     <Compile Include="Assets\Scripts\Utility\DontDestroyOnLoad.cs" />
+    <Compile Include="Assets\Scripts\Utility\HoldAndSendLoginValues.cs" />
     <Compile Include="Assets\Scripts\Utility\InteractWithDB.cs" />
+    <Compile Include="Assets\Scripts\Utility\LoadNotifications.cs" />
     <Compile Include="Assets\Scripts\Utility\ScrollToPosition.cs" />
+    <Compile Include="Assets\Scripts\Utility\SendMatch.cs" />
     <Compile Include="Assets\Scripts\Utility\SetPremiumValues.cs" />
     <Compile Include="Assets\Scripts\Utility\SubmitInput.cs" />
     <Compile Include="Assets\Scripts\Utility\SwapContentOnClick.cs" />

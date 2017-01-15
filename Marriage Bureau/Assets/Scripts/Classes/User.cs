@@ -4,29 +4,15 @@ using UnityEngine.UI;
 
 public class User : Dossier {
     //TODO: The whole class. 
-    static string username;
-
-    public string Username
-    {
-        get
-        {
-            return username;
-        }
-
-        set
-        {
-            username = value;
-        }
-    }
 
     public void fetchLoginValues()
     {
-        Username = GameObject.Find("Username").GetComponent<InputField>().text;
+    //    Username = GameObject.Find("Username").GetComponent<InputField>().text;
     }
 
     public void clearValues()
     {
-        Username = "";
+    //    Username = "";
     }
 
 
