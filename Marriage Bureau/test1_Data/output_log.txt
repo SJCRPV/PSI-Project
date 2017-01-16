@@ -17,7 +17,7 @@ Platform assembly: C:\Users\Diogo Duarte\Documents\GitHub\PSI-Project\Marriage B
 Loading C:\Users\Diogo Duarte\Documents\GitHub\PSI-Project\Marriage Bureau\test1_Data\Managed\UnityEngine.Networking.dll into Unity Child Domain
 Platform assembly: C:\Users\Diogo Duarte\Documents\GitHub\PSI-Project\Marriage Bureau\test1_Data\Managed\UnityEngine.PlaymodeTestsRunner.dll (this message is harmless)
 Loading C:\Users\Diogo Duarte\Documents\GitHub\PSI-Project\Marriage Bureau\test1_Data\Managed\UnityEngine.PlaymodeTestsRunner.dll into Unity Child Domain
-- Completed reload, in  0.055 seconds
+- Completed reload, in  0.083 seconds
 Platform assembly: C:\Users\Diogo Duarte\Documents\GitHub\PSI-Project\Marriage Bureau\test1_Data\Managed\System.Core.dll (this message is harmless)
 Platform assembly: C:\Users\Diogo Duarte\Documents\GitHub\PSI-Project\Marriage Bureau\test1_Data\Managed\System.dll (this message is harmless)
 desktop: 1920x1080 60Hz; virtual: 1920x1080 at 0,0
@@ -32,7 +32,7 @@ The referenced script on this Behaviour (Game Object 'HolderOfValues') is missin
  
 (Filename:  Line: 1754)
 
-UnloadTime: 1.287662 ms
+UnloadTime: 1.064000 ms
 DontDestroyOnLoad only work for root GameObjects or components on root GameObjects.
  
 (Filename:  Line: 447)
@@ -47,15 +47,17 @@ NullReferenceException: Object reference not set to an instance of an object
 (Filename:  Line: -1)
 
 Unloading 5 Unused Serialized files (Serialized files now loaded: 0)
-UnloadTime: 5.077095 ms
+UnloadTime: 5.324706 ms
 
-Unloading 48 unused Assets to reduce memory usage. Loaded Objects now: 378.
-Total: 0.306627 ms (FindLiveObjects: 0.035067 ms CreateObjectMapping: 0.029508 ms MarkObjects: 0.203562 ms  DeleteObjects: 0.038061 ms)
+Unloading 48 unused Assets to reduce memory usage. Loaded Objects now: 379.
+Total: 0.323733 ms (FindLiveObjects: 0.029508 ms CreateObjectMapping: 0.014540 ms MarkObjects: 0.241196 ms  DeleteObjects: 0.038061 ms)
 
-The passwords don't match
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+Unloading 6 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 0.638913 ms
+
+Unloading 4 unused Assets to reduce memory usage. Loaded Objects now: 1354.
+Total: 0.888662 ms (FindLiveObjects: 0.076122 ms CreateObjectMapping: 0.020954 ms MarkObjects: 0.782177 ms  DeleteObjects: 0.008980 ms)
 
 Setting up 2 worker threads for Enlighten.
-  Thread -> id: 7274 -> priority: 1 
-  Thread -> id: 18dc -> priority: 1 
+  Thread -> id: 3f44 -> priority: 1 
+  Thread -> id: 4904 -> priority: 1 

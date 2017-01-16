@@ -18,6 +18,14 @@ public class ToggleContent : MonoBehaviour
         for (int i = 0; i < objectsToToggle.Length; i++)
         {
             objectsToToggle[i].transform.gameObject.SetActive(isActive);
+            
+            if(objectsToToggle[i].transform.childCount >0)
+            {
+                for(int j= 0; j < objectsToToggle[i].transform.childCount; j++ )
+                {
+                    objectsToToggle[i].transform.GetChild(j).gameObject.SetActive(isActive);
+                }
+            }
         }
     }
 
