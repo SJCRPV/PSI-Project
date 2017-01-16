@@ -5,16 +5,16 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{6786A13D-92C7-5151-85A9-3446894466A8}</ProjectGuid>
+    <ProjectGuid>{CFF1F06E-27F3-D5F3-873A-0A6E3E332330}</ProjectGuid>
     <OutputType>Library</OutputType>
-    <AssemblyName>Assembly-CSharp</AssemblyName>
+    <AssemblyName>Assembly-CSharp-Editor</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{E097FAD1-6243-4DAD-9C02-E9B9EFC3FFC1};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <TargetFrameworkIdentifier>.NETFramework</TargetFrameworkIdentifier>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
-    <TargetFrameworkProfile>Unity Subset v3.5</TargetFrameworkProfile>
+    <TargetFrameworkProfile>Unity Full v3.5</TargetFrameworkProfile>
     <CompilerResponseFile></CompilerResponseFile>
-    <UnityProjectType>Game:1</UnityProjectType>
+    <UnityProjectType>Editor:5</UnityProjectType>
     <UnityBuildTarget>StandaloneWindows64:19</UnityBuildTarget>
     <UnityVersion>5.5.0f3</UnityVersion>
     <RootNamespace></RootNamespace>
@@ -52,62 +52,85 @@
     <Reference Include="UnityEngine">
       <HintPath>Library\UnityAssemblies\UnityEngine.dll</HintPath>
     </Reference>
+    <Reference Include="UnityEditor">
+      <HintPath>Library\UnityAssemblies\UnityEditor.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.Advertisements">
+      <HintPath>Library\UnityAssemblies\UnityEditor.Advertisements.dll</HintPath>
+    </Reference>
+    <Reference Include="nunit.framework">
+      <HintPath>Library\UnityAssemblies\nunit.framework.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.EditorTestsRunner">
+      <HintPath>Library\UnityAssemblies\UnityEditor.EditorTestsRunner.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEngine.UI">
       <HintPath>Library\UnityAssemblies\UnityEngine.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.UI">
+      <HintPath>Library\UnityAssemblies\UnityEditor.UI.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.Networking">
       <HintPath>Library\UnityAssemblies\UnityEngine.Networking.dll</HintPath>
     </Reference>
+    <Reference Include="UnityEditor.Networking">
+      <HintPath>Library\UnityAssemblies\UnityEditor.Networking.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.PlaymodeTestsRunner">
+      <HintPath>Library\UnityAssemblies\UnityEditor.PlaymodeTestsRunner.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEngine.PlaymodeTestsRunner">
       <HintPath>Library\UnityAssemblies\UnityEngine.PlaymodeTestsRunner.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.TreeEditor">
+      <HintPath>Library\UnityAssemblies\UnityEditor.TreeEditor.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.Analytics">
       <HintPath>Library\UnityAssemblies\UnityEngine.Analytics.dll</HintPath>
     </Reference>
+    <Reference Include="UnityEditor.Analytics">
+      <HintPath>Library\UnityAssemblies\UnityEditor.Analytics.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.HoloLens">
+      <HintPath>Library\UnityAssemblies\UnityEditor.HoloLens.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEngine.HoloLens">
       <HintPath>Library\UnityAssemblies\UnityEngine.HoloLens.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.VR">
+      <HintPath>Library\UnityAssemblies\UnityEditor.VR.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.VR">
       <HintPath>Library\UnityAssemblies\UnityEngine.VR.dll</HintPath>
     </Reference>
-    <Reference Include="UnityEditor">
-      <HintPath>Library\UnityAssemblies\UnityEditor.dll</HintPath>
+    <Reference Include="UnityEditor.Graphs">
+      <HintPath>Library\UnityAssemblies\UnityEditor.Graphs.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.Android.Extensions">
+      <HintPath>Library\UnityAssemblies\UnityEditor.Android.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.WebGL.Extensions">
+      <HintPath>Library\UnityAssemblies\UnityEditor.WebGL.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.WindowsStandalone.Extensions">
+      <HintPath>Library\UnityAssemblies\UnityEditor.WindowsStandalone.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="SyntaxTree.VisualStudio.Unity.Bridge">
+      <HintPath>Library\UnityAssemblies\SyntaxTree.VisualStudio.Unity.Bridge.dll</HintPath>
+    </Reference>
+    <Reference Include="MapToolkit_Lite">
+      <HintPath>Assets\MapToolkit-lite\Plugins\MapToolkit_Lite.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\GoogleMaps\Scripts\GoogleMap.cs" />
-    <Compile Include="Assets\Scripts\Classes\Dossier.cs" />
-    <Compile Include="Assets\Scripts\Classes\LimitedProfile.cs" />
-    <Compile Include="Assets\Scripts\Classes\Notification.cs" />
-    <Compile Include="Assets\Scripts\Classes\NotificationList.cs" />
-    <Compile Include="Assets\Scripts\Classes\Person.cs" />
-    <Compile Include="Assets\Scripts\Classes\PersonalLike.cs" />
-    <Compile Include="Assets\Scripts\Classes\Personality.cs" />
-    <Compile Include="Assets\Scripts\Classes\RomanticDate.cs" />
-    <Compile Include="Assets\Scripts\Classes\RomanticDateList.cs" />
-    <Compile Include="Assets\Scripts\Classes\RomanticDateStep.cs" />
-    <Compile Include="Assets\Scripts\Classes\SearchAlgorithm.cs" />
-    <Compile Include="Assets\Scripts\Classes\User.cs" />
-    <Compile Include="Assets\Scripts\External\TabNavigation.cs" />
-    <Compile Include="Assets\Scripts\Utility\ActivateSearchAlgorithm.cs" />
-    <Compile Include="Assets\Scripts\Utility\AdaptToScreenSize.cs" />
-    <Compile Include="Assets\Scripts\Utility\BackgroundSpriteScroll.cs" />
-    <Compile Include="Assets\Scripts\Utility\ButtonPress.cs" />
-    <Compile Include="Assets\Scripts\Utility\DontDestroyOnLoad.cs" />
-    <Compile Include="Assets\Scripts\Utility\HoldAndSendLoginValues.cs" />
-    <Compile Include="Assets\Scripts\Utility\InteractWithDB.cs" />
-    <Compile Include="Assets\Scripts\Utility\LoadNotifications.cs" />
-    <Compile Include="Assets\Scripts\Utility\ScrollToPosition.cs" />
-    <Compile Include="Assets\Scripts\Utility\SendMatch.cs" />
-    <Compile Include="Assets\Scripts\Utility\SetPremiumValues.cs" />
-    <Compile Include="Assets\Scripts\Utility\SubmitInput.cs" />
-    <Compile Include="Assets\Scripts\Utility\SubmitPersonalInformation.cs" />
-    <Compile Include="Assets\Scripts\Utility\SwapContentOnClick.cs" />
-    <Compile Include="Assets\Scripts\Utility\TestDBOutput.cs" />
-    <Compile Include="Assets\Scripts\Utility\ToggleContent.cs" />
+    <ProjectReference Include="Marriage Bureau.csproj">
+      <Project>{6786A13D-92C7-5151-85A9-3446894466A8}</Project>
+      <Name>Marriage Bureau</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Assets\GoogleMaps\README.txt" />
+    <Compile Include="Assets\MapToolkit-lite\Script\Editor\LevelScriptEditor.cs" />
+    <Compile Include="Assets\MapToolkit-lite\Script\Editor\Menu_Editor.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />

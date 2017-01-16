@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Scenes/AfterDetalhe.unity
+- path: "Assets/Scenes/Informa\xE7\xF5esPessoais.unity"
   isLoaded: 1
   isActive: 1
