@@ -3,6 +3,7 @@ using System.Collections;
 
 public class Notification {
 
+    private string sender;
     private long time;
     private string text;
     private bool isSeen;
@@ -40,8 +41,17 @@ public class Notification {
         }
     }
 
-    public Notification(long newTime, string newText, bool newIsMatchProposal)
+    public string Sender
     {
+        get
+        {
+            return sender;
+        }
+    }
+
+    public Notification(string newSender, long newTime, string newText, bool newIsMatchProposal)
+    {
+        sender = newSender;
         time = newTime;
         text = newText;
         isSeen = false;

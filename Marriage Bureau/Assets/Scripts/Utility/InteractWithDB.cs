@@ -89,6 +89,6 @@ public class InteractWithDB : MonoBehaviour
             form.AddField(varNames[i], varValues[i]);
         }
         www = new WWW(destinationURL, form);
-        StartCoroutine(WaitForRequest(www, false));
+        StartCoroutine(WaitForRequest(www, true));
     }
 }

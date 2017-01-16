@@ -1,5 +1,9 @@
 using UnityEngine;
 using System.Collections;
+<<<<<<< HEAD
+using System.IO;
+=======
+>>>>>>> e38bc7744a569720a514f67aab10e1b80202506c
 
 public class GoogleMap : MonoBehaviour
 {
@@ -37,14 +41,24 @@ public class GoogleMap : MonoBehaviour
 		var qs = "";
 		if (!autoLocateCenter) {
 			if (centerLocation.address != "")
+<<<<<<< HEAD
+				qs += "center=" + WWW.UnEscapeURL (centerLocation.address);
+			else {
+				qs += "center=" + WWW.UnEscapeURL (string.Format ("{0},{1}", centerLocation.latitude, centerLocation.longitude));
+=======
 				qs += "center=" + WWW.UnEscapeURL(centerLocation.address);
 			else {
 				qs += "center=" + WWW.UnEscapeURL(string.Format ("{0},{1}", centerLocation.latitude, centerLocation.longitude));
+>>>>>>> e38bc7744a569720a514f67aab10e1b80202506c
 			}
 		
 			qs += "&zoom=" + zoom.ToString ();
 		}
+<<<<<<< HEAD
+		qs += "&size=" + WWW.UnEscapeURL (string.Format ("{0}x{0}", size));
+=======
 		qs += "&size=" + WWW.UnEscapeURL(string.Format ("{0}x{0}", size));
+>>>>>>> e38bc7744a569720a514f67aab10e1b80202506c
 		qs += "&scale=" + (doubleResolution ? "2" : "1");
 		qs += "&maptype=" + mapType.ToString ().ToLower ();
 		var usingSensor = false;
@@ -57,9 +71,15 @@ public class GoogleMap : MonoBehaviour
 			qs += "&markers=" + string.Format ("size:{0}|color:{1}|label:{2}", i.size.ToString ().ToLower (), i.color, i.label);
 			foreach (var loc in i.locations) {
 				if (loc.address != "")
+<<<<<<< HEAD
+					qs += "|" + WWW.UnEscapeURL (loc.address);
+				else
+					qs += "|" + WWW.UnEscapeURL (string.Format ("{0},{1}", loc.latitude, loc.longitude));
+=======
 					qs += "|" + WWW.UnEscapeURL(loc.address);
 				else
 					qs += "|" + WWW.UnEscapeURL(string.Format ("{0},{1}", loc.latitude, loc.longitude));
+>>>>>>> e38bc7744a569720a514f67aab10e1b80202506c
 			}
 		}
 		
@@ -74,6 +94,16 @@ public class GoogleMap : MonoBehaviour
 			}
 		}
 
+<<<<<<< HEAD
+        var req = new WWW(url + "?" + qs);
+        yield return req;
+        byte[] bytes = req.texture.EncodeToPNG();
+        File.WriteAllBytes("Assets/Img/testImage.png", bytes);
+        GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("C:/Users/SJCRPV/Documents/GitHub/PSI-Project/Marriage Bureau/Assets/Img/testImage");
+        //byte[] data = File.ReadAllBytes("Assets/Img/testImage.png");
+
+
+=======
 
         var req = new WWW(url + "?" + qs);
         yield return req;
@@ -83,6 +113,7 @@ public class GoogleMap : MonoBehaviour
         
 
         
+>>>>>>> e38bc7744a569720a514f67aab10e1b80202506c
     }
 	
 	

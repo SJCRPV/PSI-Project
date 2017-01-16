@@ -1,10 +1,10 @@
 <?php
 	@include("connection.php");
 	
-	$username = $_POST['username'];	
+	$receiver = $_POST['receiver'];	
 	$table = 'notificacoes';
 	
-	$select = "SELECT TEMPO, DESCRICAO, VISTA FROM $table WHERE USERNAME = $username";
+	$select = "SELECT USERNAME, TEMPO, DESCRICAO, VISTA FROM $table WHERE USERNAME_RECEIVER = $receiver";
 	
 	$connection = mysqli_connect($server, $DBusername, $DBpassword, $database);
 	
@@ -12,7 +12,7 @@
 	
 	while($row = mysqli_fetch_array($result))
 	{
-		echo $row['TEMPO'] . "," . $row['DESCRICAO'] . "," . $row['VISTA'] . ";";
+		echo $row['USERNAME'] . ";" . $row['TEMPO'] . ";" . $row['DESCRICAO'] . ";" . $row['VISTA'] . ",";
 	}
 	
 	mysqli_close($connection);

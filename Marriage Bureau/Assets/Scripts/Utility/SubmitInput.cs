@@ -5,12 +5,11 @@ using UnityEngine.UI;
 
 public class SubmitInput : MonoBehaviour {
     [SerializeField]
-    private string destinationURL = "http://psiwebservice/SubmitInput.php"; 
-    [SerializeField]
     private string[] varNames;
     [SerializeField]
     private string[] varValues;
 
+    private string destinationURL = "http://psiwebservice/SubmitInput.php"; 
     private InputField nameField;
     private InputField emailField;
     private InputField usernameField;
@@ -20,6 +19,17 @@ public class SubmitInput : MonoBehaviour {
     private ButtonPress buttonPressScript;
 
     //TODO: The Register page, as it is, is not exactly compatible with how things are set up in the DB. Have it insert password and username and save the other values for later.
+    private IEnumerator sendToDB()
+    {
+        interactDBScript.sendToDB(destinationURL, varNames, varValues);
+        while (interactDBScript.IsRequesting)
+        {
+            yield return null;
+        }
+        Debug.Log(interactDBScript.CleanData);
+        //buttonPressScript.loadScene();
+    }
+
     public void gatherInput()
     {
         varValues[0] = nameField.text;
@@ -29,8 +39,7 @@ public class SubmitInput : MonoBehaviour {
         varValues[3] = passwordField.text;
         if (varValues[3].Equals(confirmPassField.text))
         {
-            //interactDBScript.sendToDB(destinationURL, varNames, varValues);
-            buttonPressScript.loadScene();
+            StartCoroutine(sendToDB());
         }
         else
         {
@@ -46,7 +55,7 @@ public class SubmitInput : MonoBehaviour {
         usernameField = GameObject.Find("UsernameInputField").GetComponent<InputField>();
         passwordField = GameObject.Find("PasswordInputField").GetComponent<InputField>();
         confirmPassField = GameObject.Find("ConfirmPassInputField").GetComponent<InputField>();
-        interactDBScript = GetComponent<InteractWithDB>();
+        interactDBScript = GameObject.Find("HolderOfValues").GetComponent<InteractWithDB>();
         buttonPressScript = GetComponent<ButtonPress>();
         varValues = new string[varNames.Length];
     }

@@ -2,17 +2,26 @@
 using System.Collections;
 using System;
 
-public class Dossier
+public class Dossier : MonoBehaviour
 {
     protected InteractWithDB dbInteractionScript;
-    protected User userScript;
     protected static long dossierID;
+    private string username;
 
     private Person person;
     private Person idealMatch;
     private NotificationList notificationList;
     private RomanticDateList romanticDateList;
+    private HoldAndSendLoginValues holdAndSendScript;
     private bool isPremium;
+
+    public string Username
+    {
+        get
+        {
+            return username;
+        }
+    }
 
     protected long getDossierID()
     {
@@ -40,9 +49,14 @@ public class Dossier
         return person.getIsMale();
     }
 
+    private void fetchUsername()
+    {
+        username = holdAndSendScript.Username;
+    }
+
     private void fetchIDFromServer()
     {
-        dbInteractionScript.getSingleFromDB("http://psiwebservice/fetchID.php", new string[2] { "id", userScript.Username });
+        dbInteractionScript.getSingleFromDB("http://psiwebservice/fetchID.php", new string[2] { "id", Username });
     }
 
     private void fetchIsPremium()
@@ -52,13 +66,14 @@ public class Dossier
 
     private void fetchNotifications()
     {
-        dbInteractionScript.getSingleFromDB("http://psiwebservice/fetchNotifications.php", new string[2] { "username", userScript.Username });
+        dbInteractionScript.getSingleFromDB("http://psiwebservice/fetchNotifications.php", new string[2] { "username", Username });
     }
 
     private IEnumerator gatherInformation()
     {
+        fetchUsername();
         fetchIDFromServer();
-        while(dbInteractionScript.IsRequesting)
+        while (dbInteractionScript.IsRequesting)
         {
             yield return null;
         }
@@ -80,8 +95,6 @@ public class Dossier
 
     protected Dossier()
     {
-        dbInteractionScript = GameObject.Find("HolderOfValues").GetComponent<InteractWithDB>();
-        userScript = GameObject.Find("HolderOfValues").GetComponent<User>();
         gatherInformation();
     }
 
@@ -90,5 +103,12 @@ public class Dossier
         dossierID = newDossierID;
         isPremium = newIsPremium;
         person = newPerson;
+    }
+
+    private void Start()
+    {
+        GameObject holderOfValues = GameObject.Find("HolderOfValues");
+        dbInteractionScript = holderOfValues.GetComponent<InteractWithDB>();
+        holdAndSendScript = holderOfValues.GetComponent<HoldAndSendLoginValues>();
     }
 }
