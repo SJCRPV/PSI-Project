@@ -10,4 +10,14 @@ public class NotificationList {
     {
         notificationList.Add(notificationToAdd);
     }
+
+    public int getLength()
+    {
+        return notificationList.Count;
+    }
+
+    public Notification getNotificationAtIndex(int index)
+    {
+        return notificationList[index];
+    }
 }

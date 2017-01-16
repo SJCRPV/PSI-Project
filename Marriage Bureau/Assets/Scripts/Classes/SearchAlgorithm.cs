@@ -144,6 +144,7 @@ public class SearchAlgorithm : MonoBehaviour {
             string[] hobbies = dbInteractionScript.CleanData;
 
             buildCurrentScanDossier(dossierID, isPremium, deets, hobbies);
+            searchDossier();
         }
 
         //TODO: Interact with DB to fetch user list

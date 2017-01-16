@@ -2,12 +2,28 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class LoadNotifications : MonoBehaviour {
 
+    public GameObject notificationPrefab;
+
+    private GameObject notificationInstance;
     private NotificationList notificationList;
     private InteractWithDB dbInteractionScript;
     private Dossier dossierScript;
+
+    public void displayNotifications()
+    {
+        Vector3 spawnPos = gameObject.transform.position;
+        for (int i = 0; i < notificationList.getLength(); i++)
+        {
+            Notification tempNotification = notificationList.getNotificationAtIndex(i);
+            spawnPos.y += -100 * i;
+            notificationInstance = Instantiate(notificationPrefab, spawnPos, Quaternion.identity);
+            notificationInstance.GetComponentInChildren<Text>().text = tempNotification.Sender + "\t" + tempNotification.Time + "\n" + tempNotification.Text;
+        }
+    }
 
     private void assembleNotifications(string[][] data)
     {
@@ -16,6 +32,7 @@ public class LoadNotifications : MonoBehaviour {
         {
             notificationList.addNotification(new Notification(data[i][0], Convert.ToInt64(data[i][1]), data[i][2], Convert.ToBoolean(data[i][3])));
         }
+        displayNotifications();
     }
 
     private void prepareNotificationsForAssembly(string[] data)
@@ -42,10 +59,6 @@ public class LoadNotifications : MonoBehaviour {
 	void Start () {
         dbInteractionScript = GameObject.Find("HolderOfValues").GetComponent<InteractWithDB>();
         dossierScript = GameObject.Find("User").GetComponent<Dossier>();
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
+        fetchNotifications();
 	}
 }
