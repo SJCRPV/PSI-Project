@@ -10,8 +10,6 @@
 	//Queries
 	$insert = "INSERT INTO pessoa (USERNAME, EMAIL, NOMECOMPLETO)
 			   VALUES('$username', '$email', '$name')";
-	//$insert = "INSERT INTO pessoa (USERNAME, EMAIL, QUERGUARDAR, NOMECOMPLETO, SEXO, IDADE, MORADA, FOROPERFIL, FOTOCC, FEEDBACKAPP, PREMIUMCC)
-		//	   VALUES('$username', '$email', 0, '$name', 0, null, null, null, null, null, null)" 
 	$insert2 = "INSERT INTO utilizador (USERNAME, PASSWORD)
 				VALUES('$username', '$password')";
 	

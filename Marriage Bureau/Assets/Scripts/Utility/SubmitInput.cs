@@ -18,7 +18,6 @@ public class SubmitInput : MonoBehaviour {
     private InteractWithDB interactDBScript;
     private ButtonPress buttonPressScript;
 
-    //TODO: The Register page, as it is, is not exactly compatible with how things are set up in the DB. Have it insert password and username and save the other values for later.
     private IEnumerator sendToDB()
     {
         interactDBScript.sendToDB(destinationURL, varNames, varValues);
@@ -26,8 +25,8 @@ public class SubmitInput : MonoBehaviour {
         {
             yield return null;
         }
-        Debug.Log(interactDBScript.CleanData);
-        //buttonPressScript.loadScene();
+        //Debug.Log(interactDBScript.CleanData);
+        buttonPressScript.loadScene();
     }
 
     public void gatherInput()

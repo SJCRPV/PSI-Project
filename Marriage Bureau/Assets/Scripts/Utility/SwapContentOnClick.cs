@@ -4,7 +4,6 @@ using UnityEngine.UI;
 
 public class SwapContentOnClick : MonoBehaviour
 {
-    //TODO:REWRITE MOTHERFUCKER!!!!!!!
 
     [SerializeField]
     private Sprite inactiveSprite;

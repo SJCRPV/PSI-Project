@@ -154,18 +154,6 @@ public class SearchAlgorithm : MonoBehaviour {
         {
 
         }
-        /*
-         * Send to DB: select * from Users
-         * Probably use a cursor to insert into a list
-         * 
-         * for(int i = 0; i < list.Count; i++)
-         * {
-         *      currentScanDossier = list[i];
-         *      currentScanPerson = currentScanDossier.GetComponent<Person>();
-         *      currentScanPersonality = currentScanPerson.GetComponent<Personality>();
-         *      searchDossier();
-         * }
-         * */
     }
 
 	// Use this for initialization

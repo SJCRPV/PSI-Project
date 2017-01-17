@@ -33,6 +33,11 @@ public class HoldAndSendLoginValues : MonoBehaviour {
         password = passwordField.text;
     }
 
+    public void gatherRegisterUsername()
+    {
+        username = GameObject.Find("UsernameInputField").GetComponent<InputField>().text;
+    }
+
 	// Use this for initialization
 	void Start () {
         dbInteractionScript = GetComponent<InteractWithDB>();

@@ -6,6 +6,9 @@ using System.Linq;
 
 public class SubmitPersonalInformation : MonoBehaviour {
 
+    private InteractWithDB dbInteractionScript;
+    private string username;
+
     //Input Fields
     private InputField inputIdade;
     private InputField inputAltura;
@@ -21,47 +24,132 @@ public class SubmitPersonalInformation : MonoBehaviour {
     private ToggleGroup groupCorCabelo;
     private ToggleGroup groupAnimais;
     private ToggleGroup groupFilhos;
-    private ToggleGroup groupImportante;
-    private ToggleGroup groupTracos;
-    private ToggleGroup groupDefeitos;
-    private ToggleGroup groupTemposLivres;
+
+    //Groups that allow multiple toggles
+    private GameObject groupImportante;
+    private GameObject groupTracos;
+    private GameObject groupDefeitos;
+    private GameObject groupTemposLivres;
+
+    //Strings
+    private string idade;
+    private string altura;
+    private string etnia;
+    private string profissao;
+    private string corPreferida;
+    private string olhos;
+    private string corCabelo;
+    private string filhos;
+    private string animais;
+    private string musica;
+    private string idolos;
+    private string filmes;
+    private string temposLivres;
+    private string defeitos;
+    private string tracos;
+    private string importante;
+
+    private string[] extractActiveToggles(GameObject toggleParent)
+    {
+        string temp = "";
+        for(int i = 0; i < toggleParent.transform.childCount; i++)
+        {
+            if(toggleParent.transform.GetChild(i).GetComponent<Toggle>().isOn)
+            {
+                temp += toggleParent.transform.GetChild(i).gameObject.name + ",";
+            }
+        }
+        return temp.Split(',');
+    }
+
+    private string[] extractStringArray(string inputText)
+    {
+        return inputText.Split(',');
+    }
 
     private string extractName(IEnumerable<Toggle> currentToggle)
     {
-        //currentToggle
-        //return "";
+        Toggle temp = currentToggle.FirstOrDefault();
+        return temp.gameObject.name;
+    }
+
+    private string compoundToString(string[] arrayString)
+    {
+        string temp = "";
+        for(int i = 0; i < arrayString.Length; i++)
+        {
+            temp += arrayString[i];
+        }
+        return temp;
+    }
+
+    private string resolveBoolean(string stringedBool)
+    {
+        if (stringedBool.Equals("Sim"))
+        {
+            return "1";
+        }
+        else
+        {
+            return "0";
+        }
+    }
+
+    private void sendToDB()
+    {
+        string[] varNames = new string[] {"username", "idade", "altura", "etnia", "profissao", "corPreferida", "olhos", "corCabelo", "filhos", "animais", "musica", "idolos", "filmes", "temposLivres", "defeitos", "tracos", "importante" };
+        string[] varValues = new string[] { username, idade, altura, etnia, profissao, corPreferida, olhos, corCabelo, filhos, animais, musica, idolos, filmes, temposLivres, defeitos, tracos, importante };
+        dbInteractionScript.sendToDB("http://psiwebservice/registerInformation.php", varNames, varValues);
     }
 
     private void gatherInput()
     {
-        IEnumerable<Toggle> currentToggle = groupOlhos.ActiveToggles();
-        Toggle test = currentToggle.FirstOrDefault();
-        string tesitng = test.gameObject.name;
+        idade = inputIdade.text;
+        altura = inputAltura.text;
+        etnia = inputEtnia.text;
+        musica = inputMusica.text;
+        idolos = inputIdolos.text;
+        filmes = inputFilmes.text;
+        profissao = inputProfissao.text;
+        corPreferida = inputCorPreferida.text;
+        olhos = extractName(groupOlhos.ActiveToggles());
+        corCabelo = extractName(groupCorCabelo.ActiveToggles());
+        filhos = resolveBoolean(extractName(groupFilhos.ActiveToggles()));
+        temposLivres = compoundToString(extractActiveToggles(groupTemposLivres));
+        defeitos = compoundToString(extractActiveToggles(groupDefeitos));
+        tracos = compoundToString(extractActiveToggles(groupTracos));
+        importante = compoundToString(extractActiveToggles(groupImportante));
+        animais = resolveBoolean(extractName(groupAnimais.ActiveToggles()));
+        sendToDB();
     }
 
     public void onClick()
     {
+        username = GameObject.Find("HolderOfValues").GetComponent<HoldAndSendLoginValues>().Username;
         gatherInput();
     }
 
     // Use this for initialization
     void Start () {
-        inputIdade = GameObject.Find("Idade").GetComponent<InputField>();
-        inputAltura = GameObject.Find("Alutra").GetComponent<InputField>();
-        inputEtnia = GameObject.Find("Etnia").GetComponent<InputField>();
-        inputProfissao = GameObject.Find("Profissão").GetComponent<InputField>();
-        inputCorPreferida = GameObject.Find("CorPreferida").GetComponent<InputField>();
-        inputMusica = GameObject.Find("EstiloMúsica").GetComponent<InputField>();
-        inputIdolos = GameObject.Find("Idolos").GetComponent<InputField>();
-        inputFilmes = GameObject.Find("Filmes").GetComponent<InputField>();
+        dbInteractionScript = GameObject.Find("HolderOfValues").GetComponent<InteractWithDB>();
+
+        inputIdade = GameObject.Find("Idade").GetComponentInChildren<InputField>();
+        inputAltura = GameObject.Find("Altura").GetComponentInChildren<InputField>();
+        inputEtnia = GameObject.Find("Etnia").GetComponentInChildren<InputField>();
+        inputProfissao = GameObject.Find("Profissão").GetComponentInChildren<InputField>();
+        inputCorPreferida = GameObject.Find("CorPreferida").GetComponentInChildren<InputField>();
+        inputMusica = GameObject.Find("EstiloMúsica").GetComponentInChildren<InputField>();
+        inputIdolos = GameObject.Find("Idolos").GetComponentInChildren<InputField>();
+        inputFilmes = GameObject.Find("Filmes").GetComponentInChildren<InputField>();
 
         groupOlhos = GameObject.Find("Olhos").GetComponent<ToggleGroup>();
         groupCorCabelo = GameObject.Find("CorCabelo").GetComponent<ToggleGroup>();
         groupAnimais = GameObject.Find("Animais").GetComponent<ToggleGroup>();
         groupFilhos = GameObject.Find("Filhos").GetComponent<ToggleGroup>();
-        groupImportante = GameObject.Find("ImportanteSi").GetComponent<ToggleGroup>();
-        groupTracos = GameObject.Find("Traços").GetComponent<ToggleGroup>();
-        groupDefeitos = GameObject.Find("Defeitos").GetComponent<ToggleGroup>();
-        groupTemposLivres = GameObject.Find("TemposLivres").GetComponent<ToggleGroup>();
+
+        groupImportante = GameObject.Find("ImportanteSi");
+        groupTracos = GameObject.Find("Traços");
+        groupDefeitos = GameObject.Find("Defeitos");
+        groupTemposLivres = GameObject.Find("TemposLivres");
     }
 }
