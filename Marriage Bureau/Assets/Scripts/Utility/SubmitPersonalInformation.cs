@@ -25,6 +25,7 @@ public class SubmitPersonalInformation : MonoBehaviour {
     private ToggleGroup groupAnimais;
     private ToggleGroup groupFilhos;
 
+<<<<<<< HEAD
     //Groups that allow multiple toggles
     private GameObject groupImportante;
     private GameObject groupTracos;
@@ -85,6 +86,9 @@ public class SubmitPersonalInformation : MonoBehaviour {
     }
 
     private string resolveBoolean(string stringedBool)
+=======
+    /*private string extractName(IEnumerable<Toggle> currentToggle)
+>>>>>>> 7234f176c41d7e1f86da2fc3421bb870a9438924
     {
         if (stringedBool.Equals("Sim"))
         {
@@ -106,6 +110,9 @@ public class SubmitPersonalInformation : MonoBehaviour {
         //currentToggle
         //return "";
     }*/
+<<<<<<< HEAD
+>>>>>>> 7234f176c41d7e1f86da2fc3421bb870a9438924
+=======
 >>>>>>> 7234f176c41d7e1f86da2fc3421bb870a9438924
 
     private void gatherInput()
