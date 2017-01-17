@@ -27,7 +27,7 @@ public class SubmitInput : MonoBehaviour {
             yield return null;
         }
         Debug.Log(interactDBScript.CleanData);
-        //buttonPressScript.loadScene();
+        buttonPressScript.loadScene();
     }
 
     public void gatherInput()

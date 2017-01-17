@@ -26,11 +26,11 @@ public class SubmitPersonalInformation : MonoBehaviour {
     private ToggleGroup groupDefeitos;
     private ToggleGroup groupTemposLivres;
 
-    private string extractName(IEnumerable<Toggle> currentToggle)
+    /*private string extractName(IEnumerable<Toggle> currentToggle)
     {
         //currentToggle
         //return "";
-    }
+    }*/
 
     private void gatherInput()
     {
