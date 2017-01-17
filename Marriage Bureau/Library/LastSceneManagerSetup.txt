@@ -1,8 +1,4 @@
 sceneSetups:
-<<<<<<< HEAD
-- path: Assets/Scenes/Register.unity
-=======
 - path: "Assets/Scenes/Informa\xE7\xF5esParceiro.unity"
->>>>>>> 9404af17b5b3dd5f3e7012bbf4235af1d4433b4f
   isLoaded: 1
   isActive: 1

@@ -67,8 +67,9 @@ public class SubmitPersonalInformation : MonoBehaviour {
         return inputText.Split(',');
     }
 
-    private string extractName(IEnumerable<Toggle> currentToggle)
+    /*private string extractName(IEnumerable<Toggle> currentToggle)
     {
+<<<<<<< HEAD
         Toggle temp = currentToggle.FirstOrDefault();
         return temp.gameObject.name;
     }
@@ -101,6 +102,11 @@ public class SubmitPersonalInformation : MonoBehaviour {
         string[] varValues = new string[] { username, idade, altura, etnia, profissao, corPreferida, olhos, corCabelo, filhos, animais, musica, idolos, filmes, temposLivres, defeitos, tracos, importante };
         dbInteractionScript.sendToDB("http://psiwebservice/registerInformation.php", varNames, varValues);
     }
+=======
+        //currentToggle
+        //return "";
+    }*/
+>>>>>>> 7234f176c41d7e1f86da2fc3421bb870a9438924
 
     private void gatherInput()
     {
