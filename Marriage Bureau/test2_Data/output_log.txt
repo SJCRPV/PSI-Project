@@ -17,22 +17,20 @@ Platform assembly: C:\Users\Diogo Duarte\Documents\GitHub\PSI-Project\Marriage B
 Loading C:\Users\Diogo Duarte\Documents\GitHub\PSI-Project\Marriage Bureau\test2_Data\Managed\UnityEngine.Networking.dll into Unity Child Domain
 Platform assembly: C:\Users\Diogo Duarte\Documents\GitHub\PSI-Project\Marriage Bureau\test2_Data\Managed\UnityEngine.PlaymodeTestsRunner.dll (this message is harmless)
 Loading C:\Users\Diogo Duarte\Documents\GitHub\PSI-Project\Marriage Bureau\test2_Data\Managed\UnityEngine.PlaymodeTestsRunner.dll into Unity Child Domain
-- Completed reload, in  0.025 seconds
+- Completed reload, in  0.039 seconds
 Platform assembly: C:\Users\Diogo Duarte\Documents\GitHub\PSI-Project\Marriage Bureau\test2_Data\Managed\System.Core.dll (this message is harmless)
 Platform assembly: C:\Users\Diogo Duarte\Documents\GitHub\PSI-Project\Marriage Bureau\test2_Data\Managed\System.dll (this message is harmless)
+OnLevelWasLoaded was found on ActivateSearchAlgorithm
+This message has been deprecated and will be removed in a later version of Unity.
+Add a delegate to SceneManager.sceneLoaded instead to get notifications after scene loading has completed
+ 
+(Filename:  Line: 382)
+
 desktop: 1920x1080 60Hz; virtual: 1920x1080 at 0,0
 <RI> Initializing input.
 <RI> Input initialized.
 <RI> Initialized touch support.
-The referenced script on this Behaviour (Game Object 'HolderOfValues') is missing!
- 
-(Filename:  Line: 1754)
-
-The referenced script on this Behaviour (Game Object 'HolderOfValues') is missing!
- 
-(Filename:  Line: 1754)
-
-UnloadTime: 1.263286 ms
+UnloadTime: 1.376614 ms
 DontDestroyOnLoad only work for root GameObjects or components on root GameObjects.
  
 (Filename:  Line: 447)
@@ -41,17 +39,12 @@ DontDestroyOnLoad only work for root GameObjects or components on root GameObjec
  
 (Filename:  Line: 447)
 
-NullReferenceException: Object reference not set to an instance of an object
-  at SearchAlgorithm.Start () [0x00000] in <filename unknown>:0 
- 
-(Filename:  Line: -1)
+Unloading 5 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 7.421060 ms
 
-Unloading 6 Unused Serialized files (Serialized files now loaded: 0)
-UnloadTime: 5.006532 ms
-
-Unloading 49 unused Assets to reduce memory usage. Loaded Objects now: 419.
-Total: 0.341267 ms (FindLiveObjects: 0.041054 ms CreateObjectMapping: 0.025659 ms MarkObjects: 0.233070 ms  DeleteObjects: 0.040627 ms)
+Unloading 41 unused Assets to reduce memory usage. Loaded Objects now: 385.
+Total: 0.384887 ms (FindLiveObjects: 0.024803 ms CreateObjectMapping: 0.024803 ms MarkObjects: 0.280540 ms  DeleteObjects: 0.054311 ms)
 
 Setting up 2 worker threads for Enlighten.
-  Thread -> id: 1178 -> priority: 1 
-  Thread -> id: 3108 -> priority: 1 
+  Thread -> id: 2168 -> priority: 1 
+  Thread -> id: 2888 -> priority: 1 
