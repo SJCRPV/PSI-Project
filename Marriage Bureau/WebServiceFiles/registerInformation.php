@@ -23,16 +23,16 @@
 	$connection = mysqli_connect($server, $DBusername, $DBpassword, $database);
 	
 	$insertToCP = "INSERT INTO caracteristicaspessoais
-				  values('$olhos', '$etnia', '$corCabelo', '$altura', '$profissao', '$corPreferida', '$filhos', '$animais', '$importante', '$tracos', '$defeitos', '$musica', '$idolos', '$filmes')"
+				  values('$olhos', '$etnia', '$corCabelo', '$altura', '$profissao', '$corPreferida', '$filhos', '$animais', '$importante', '$tracos', '$defeitos', '$musica', '$idolos', '$filmes')";
 				  
 	$result = mysqli_query($connection, $insertToCP);
-	if(!result)
+	if(!$result)
 	{
 		echo "insertToCP failed.\n" . mysqli_error($connection);
 	}
 	
 	$selectCPID = "SELECT LAST(IDCPESSOAIS)
-					FROM caracteristicaspessoais"
+					FROM caracteristicaspessoais";
 	$CPID = mysqli_query($connection, $selectCPID);
 	if(!$CPID)
 	{
@@ -41,23 +41,23 @@
 	
 	$selectID = "SELECT IDPESSOA
 				FROM pessoa
-				WHERE USERNAME = '$username'" 
+				WHERE USERNAME = '$username'" ;
 	$result = mysqli_query($connection, $selectID);
-	if(!result)
+	if(!$result)
 	{
 		echo "selectID failed.\n" . mysqli_error($connection);
 	}
 	
 	$insertToTemc = "INSERT INTO temc
-					values('$selectID', '$CPID')"
-	if(!result)
+					values('$selectID', '$CPID')";
+	if(!$result)
 	{
 		echo "insertToTemc failed.\n" . mysqli_error($connection);
 	}
 					
 	$updateInPessoa = "UPDATE pessoa
 					   SET IDADE = '$idade'
-					   WHERE USERNAME = '$username'"
+					   WHERE USERNAME = '$username'";
 	
 	$result = mysqli_query($connection, $updateInPessoa);
 	if(!$result)

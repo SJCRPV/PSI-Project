@@ -25,14 +25,7 @@ public class SubmitInput : MonoBehaviour {
         {
             yield return null;
         }
-<<<<<<< HEAD
-        //Debug.Log(interactDBScript.CleanData);
-=======
         Debug.Log(interactDBScript.CleanData);
-<<<<<<< HEAD
->>>>>>> 7234f176c41d7e1f86da2fc3421bb870a9438924
-=======
->>>>>>> 7234f176c41d7e1f86da2fc3421bb870a9438924
         buttonPressScript.loadScene();
     }
 

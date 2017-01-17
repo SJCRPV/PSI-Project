@@ -8,6 +8,7 @@ public class HoldAndSendLoginValues : MonoBehaviour {
     private InputField usernameField;
     private InputField passwordField;
     private InteractWithDB dbInteractionScript;
+    private ButtonPress buttonPressScript;
     private string username;
     private string password;
 
@@ -19,12 +20,26 @@ public class HoldAndSendLoginValues : MonoBehaviour {
         }
     }
 
-    public void verifyCredentials()
+    public IEnumerator verifyingCredentials()
     {
         //TODO: Hash password if you have the time
         string[] varNames = { "username", "password" };
         string[] varValues = { username, password };
         dbInteractionScript.sendToDB("http://psiwebservice/verifyCredentials.php", varNames, varValues);
+        while (dbInteractionScript.IsRequesting)
+        {
+            yield return null;
+        }
+        string temp = dbInteractionScript.CleanData[0];
+        if (temp.Equals("true"))
+        {
+            buttonPressScript.loadScene();
+        }
+    }
+
+    public void callForCredentialVerification()
+    {
+        StartCoroutine(verifyingCredentials());
     }
 
     public void gatherLoginValues()
@@ -43,5 +58,6 @@ public class HoldAndSendLoginValues : MonoBehaviour {
         dbInteractionScript = GetComponent<InteractWithDB>();
         usernameField = GameObject.Find("Username").GetComponent<InputField>();
         passwordField = GameObject.Find("Password").GetComponent<InputField>();
+        buttonPressScript = GameObject.Find("Login").GetComponent<ButtonPress>();
 	}
 }

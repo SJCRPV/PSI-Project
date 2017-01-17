@@ -25,7 +25,6 @@ public class SubmitPersonalInformation : MonoBehaviour {
     private ToggleGroup groupAnimais;
     private ToggleGroup groupFilhos;
 
-<<<<<<< HEAD
     //Groups that allow multiple toggles
     private GameObject groupImportante;
     private GameObject groupTracos;
@@ -68,11 +67,10 @@ public class SubmitPersonalInformation : MonoBehaviour {
         return inputText.Split(',');
     }
 
-    /*private string extractName(IEnumerable<Toggle> currentToggle)
+    private string extractName(IEnumerable<Toggle> currentToggle)
     {
-<<<<<<< HEAD
         Toggle temp = currentToggle.FirstOrDefault();
-        return temp.gameObject.name;
+        return temp.gameObject.GetComponentInChildren<Text>().text;
     }
 
     private string compoundToString(string[] arrayString)
@@ -86,9 +84,6 @@ public class SubmitPersonalInformation : MonoBehaviour {
     }
 
     private string resolveBoolean(string stringedBool)
-=======
-    /*private string extractName(IEnumerable<Toggle> currentToggle)
->>>>>>> 7234f176c41d7e1f86da2fc3421bb870a9438924
     {
         if (stringedBool.Equals("Sim"))
         {
@@ -100,20 +95,17 @@ public class SubmitPersonalInformation : MonoBehaviour {
         }
     }
 
-    private void sendToDB()
+    private IEnumerator sendToDB()
     {
-        string[] varNames = new string[] {"username", "idade", "altura", "etnia", "profissao", "corPreferida", "olhos", "corCabelo", "filhos", "animais", "musica", "idolos", "filmes", "temposLivres", "defeitos", "tracos", "importante" };
+        string[] varNames = new string[] { "username", "idade", "altura", "etnia", "profissao", "corPreferida", "olhos", "corCabelo", "filhos", "animais", "musica", "idolos", "filmes", "temposLivres", "defeitos", "tracos", "importante" };
         string[] varValues = new string[] { username, idade, altura, etnia, profissao, corPreferida, olhos, corCabelo, filhos, animais, musica, idolos, filmes, temposLivres, defeitos, tracos, importante };
         dbInteractionScript.sendToDB("http://psiwebservice/registerInformation.php", varNames, varValues);
+        while (dbInteractionScript.IsRequesting)
+        {
+            yield return null;
+        }
+        Debug.Log(dbInteractionScript.CleanData[0]);
     }
-=======
-        //currentToggle
-        //return "";
-    }*/
-<<<<<<< HEAD
->>>>>>> 7234f176c41d7e1f86da2fc3421bb870a9438924
-=======
->>>>>>> 7234f176c41d7e1f86da2fc3421bb870a9438924
 
     private void gatherInput()
     {
@@ -133,7 +125,7 @@ public class SubmitPersonalInformation : MonoBehaviour {
         tracos = compoundToString(extractActiveToggles(groupTracos));
         importante = compoundToString(extractActiveToggles(groupImportante));
         animais = resolveBoolean(extractName(groupAnimais.ActiveToggles()));
-        sendToDB();
+        StartCoroutine(sendToDB());
     }
 
     public void onClick()
